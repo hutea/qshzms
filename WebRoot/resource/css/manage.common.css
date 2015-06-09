@@ -1,0 +1,24 @@
+.contentpanel {
+	min-height: 500px;
+}
+
+.content {
+	width: 100%;
+}
+
+.content-xs {
+	max-width: 768px;
+	width: 600px;
+}
+
+.content-sm {
+	min-width: 768px;
+}
+
+.content-md {
+	min-width: 992px;
+}
+
+.content-lg {
+	min-width: 1200px;
+}

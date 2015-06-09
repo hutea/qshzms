@@ -1,0 +1,161 @@
+@charset "utf-8";
+
+body{
+	margin:0;
+	background-color: #f7f7f7;
+	font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
+}
+.wrapall{
+	width: 100%;
+}
+.container{
+	padding: 0;
+	margin: 0;
+}
+.hz-main{
+	padding: 10px 0;
+}
+.main-header {
+    padding-top: 62px;
+    padding-bottom: 92px;
+    background-repeat: no-repeat;
+    background-position: center 30%;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.hz-dropmenu {
+	border: 1px solid #269abc;
+}
+
+.hz-core {
+	border: 1px solid #e7e7e7;
+	background-color: #ffffff;
+	padding: 0;
+}
+
+.hz-right {
+	
+}
+
+.hz-per {
+	#border: 1px solid #d5d5d5;
+	border-bottom: 1px solid #d5d5d5;
+	padding: 10px;
+	margin-bottom: 15px;
+}
+
+.hz-per-file { 
+	#background-color: #f9f2f4;
+}
+
+.hz-per-article {
+	#background-color: #f9f9f9;
+}
+
+.hz-per-movie {
+	#background-color: #dddddd;
+}
+
+.hz-per-music {
+	#background-color: #e7e7e7;
+}
+
+.hz-per-image {
+	#background-color: #a6e1ec;
+	#border: 2px solid #46b8da;
+}
+
+
+.hz-per-other {
+	
+}
+
+/***************鍖哄潡**************/
+.hz-row-title {
+	
+}
+
+
+.time-col{
+	color: #959595
+}
+
+.hz-row-tag {
+	
+}
+
+
+
+.hz-row-content {
+	margin-top: 8px;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+.hz-row-content .col-content {
+	font: 400 16px/1.62 "Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;
+    color: #444443;
+    text-indent: 2em;
+}
+
+.content-link{
+	font-size: 13px;
+    color: #444443;
+}
+
+
+.hz-text img{
+	max-height: 300px;
+}
+
+.hz-row-content p {
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+.hz-row-bottom {
+	
+}
+
+.hz-comts {
+	padding: 5px 25px;
+}
+
+.hz-comt-per {
+	border-bottom: 1px solid #d3d3d3;
+	padding-top: 5px;
+}
+
+.hz-row-comt p {
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+.hz-row-comt {
+	margin-top: 3px;
+}
+
+/***************鍖哄潡**************/
+.hz-foot {
+	margin-top: 50px;
+	border-top: 1px solid #e5e5e5;
+	color: #337ab7;
+	padding: 10px 30px;
+	text-align: center;
+}
+
+#myTabContent {
+	padding-top: 30px;
+}
+
+/***************杈呭姪鏍峰紡**************/
+.hz-btn-green {
+	background-color: #afd9ee;
+	border: 1px solid #a6e1ec;
+}
+
+.hz-btn-black {
+	background-color: #c7ddef;
+	border: 1px solid #c7ddef;
+}

@@ -1,0 +1,25 @@
+.mybody {
+	min-height: 500px;
+}
+
+#myTabContent {
+	padding: 20px;
+	border: 1px solid #d3d3d3;
+	border-top: 0;
+}
+
+.myfoot {
+	border-top: 1px solid #e5e5e5;
+	color: #337ab7;
+	padding: 10px 30px;
+	text-align: center;
+}
+
+.affixed-element-top.affix {
+	top: 70px;
+	text-align: center;
+}
+
+.affixed-element-top.affixed-bottom {
+	position: relative;
+}

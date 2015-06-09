@@ -1,0 +1,8 @@
+﻿.settings/
+target/
+zdoc/
+
+.classpath
+.project
+*.class
+

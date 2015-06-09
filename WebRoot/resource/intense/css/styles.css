@@ -1,0 +1,28 @@
+/*
+ * intense-image-viewer
+ *
+ * MIT licensed
+ * Copyright (C) 2013 Tim Holman, http://tholman.com
+ */
+/*********************************************
+ * www.lanrentuku.com
+ *********************************************/
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+.big-image {
+  cursor: url("../images/plus_cursor.png") 25 25, pointer;
+  display: inline-block;
+  width: 290px;
+  height: 290px;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-left: 8px;
+  margin-right: 8px;
+  margin-bottom: 16px; 
+ }
+
+
+
