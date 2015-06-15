@@ -6,3 +6,4 @@
  <script src="${pageContext.request.contextPath}/resource/syntaxhighlighter_3.0.83/scripts/shBrushPython.js"></script>
  <script src="${pageContext.request.contextPath}/resource/syntaxhighlighter_3.0.83/scripts/shBrushSql.js"></script>
  <script src="${pageContext.request.contextPath}/resource/syntaxhighlighter_3.0.83/scripts/shBrushXml.js"></script>
+ <script src="${pageContext.request.contextPath}/resource/syntaxhighlighter_3.0.83/scripts/shBrushBash.js"></script>

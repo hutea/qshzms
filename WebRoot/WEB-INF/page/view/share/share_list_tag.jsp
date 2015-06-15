@@ -40,7 +40,7 @@
                     	<c:if test="${entry.category==4}"><i class="fa fa-video-camera fa-lg" style="color: #369;" ></i></c:if>
                     	<c:if test="${entry.category==5}"><i class="fa fa-camera-retro fa-lg" style="color: #369;" ></i></c:if>
                     </div>
-                    <div class="col-xs-10 col-sm-10 col-md-8"><a href="/share/view/${entry.id}">${entry.title}</a></div>
+                    <div class="col-xs-10 col-sm-10 col-md-8 h3 text-center"><a href="/share/view/${entry.id}">${entry.title}</a></div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
                     	<p>
                     	<c:forEach begin="1" end="${entry.star}" step="1"  >  

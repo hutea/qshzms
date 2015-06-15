@@ -8,18 +8,18 @@
                 	class="big-image"	data-image="${entry.url}" data-title="大图欣赏" data-caption="www.qishimeishi.com"  />
               	<div class="caption">
               		<div class="row">
-              			 <div class="col-md-3">
+              			 <div class="col-xs-4 col-sm-4 col-md-3">
 		                 <a  class="btn btn-xs btn-default hz-pop" onclick="javascript:lk('${entry.id}')" id="lkc-${entry.id}" role="button" data-toggle="popover" data-trigger="focus" >
 		                       <i class="fa fa-thumbs-up fa-large"></i> 
 		                       <span id="lk-${entry.id}" >赞 <c:if test="${entry.lk>0}">(${entry.lk})</c:if> </span>
 		                 </a>
               			 </div>
                 		
-                		 <div class="col-md-4 text-right">
+                		 <div class="col-xs-4 col-sm-4 col-md-4 text-right">
 	               		 <a class="btn btn-xs btn-default" onclick="comt('${entry.id}')" id="comt-${entry.id }">评论 <c:if test="${entry.comt>0}">(${entry.comt})</c:if> </a>
               			 </div>
                 
-		                 <div class="col-md-5 text-right btn-group" role="group">
+		                 <div class="col-xs-4 col-sm-4 col-md-5 text-right btn-group" role="group">
 					        <button class="btn btn-xs btn-default hz-pop" type="button" id="report-${entry.id}" data-toggle="popover" data-trigger="focus" >More</button>
 					        <button class="btn btn-xs btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="caret"></span></button>
 					        <ul class="dropdown-menu" role="menu" style="min-width: 100px;">

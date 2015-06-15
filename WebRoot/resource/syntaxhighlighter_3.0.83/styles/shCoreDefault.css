@@ -58,6 +58,7 @@
   position: relative !important;
   overflow: auto !important;
   font-size: 1em !important;
+  padding: 1px;
 }
 .syntaxhighlighter.source {
   overflow: hidden !important;
@@ -274,6 +275,7 @@
   color: white !important;
   background: #6ce26c !important;
   border: none !important;
+  display: none;
 }
 .syntaxhighlighter .toolbar a {
   color: white !important;

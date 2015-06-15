@@ -3,6 +3,7 @@ package com.qsms.ttk.image.service;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
@@ -115,6 +116,8 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
+				tkImage.setOriurl(url); //设置上传源地址
+				tkImage.setUploadTime(new Date()); //设置上传时间
 				tkImage.setId(Helper.generatorID());
 				String linkurl = upimage.getLinkurl();
 				String find_url = linkurl
@@ -157,6 +160,8 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
+				tkImage.setOriurl(share.getUrl()); //设置上传源地址
+				tkImage.setUploadTime(new Date()); //设置上传时间
 				tkImage.setId(Helper.generatorID());
 				String linkurl = upimage.getLinkurl();
 				String find_url = linkurl
@@ -216,6 +221,8 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
+				tkImage.setOriurl(url); //设置上传源地址
+				tkImage.setUploadTime(new Date()); //设置上传时间
 				tkImage.setId(Helper.generatorID());
 				String linkurl = upimage.getLinkurl();
 				String find_url = linkurl

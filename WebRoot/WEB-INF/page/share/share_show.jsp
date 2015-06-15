@@ -66,7 +66,7 @@
 								    <div class="col-md-2">
 								  		<label class="control-label"  >星级</label>
 								  		<select name="star" class="form-control">
-									    	<c:forEach begin="1" end="5" step="1" varStatus="s" > 
+									    	<c:forEach begin="0" end="5" step="1" varStatus="s" > 
 									      	<option value="${s.index }" ${share.star==s.index?'selected="selected"':'' } >${s.index}</option>
 									    	</c:forEach>
 									    </select>
@@ -103,7 +103,7 @@
 		    					 <div class="form-group" style="margin-bottom: 5px;">
 								    <div class="col-md-5">
 								    	<label class="control-label"  >url地址:下载链接、音视频播放地址、图片地址、文章引用源地址</label>
-								      	<input type="text" class="form-control" name="url" placeholder="多个标签用#号分隔" value="${tag_str}">
+								      	<input type="text" class="form-control" name="url" placeholder="多个标签用#号分隔" value="${share.url}">
 								    	<label class="control-label text-primary" >内容摘要</label>
 								    </div>
 								    <div class="col-md-6">
