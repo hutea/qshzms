@@ -36,9 +36,7 @@ public class PrivilegeInteceptor extends HandlerInterceptorAdapter {
 			requestUrl.append("#" + request.getQueryString());
 		}
 		String url = requestUrl.substring(requestUrl.indexOf("manage"));
-		System.out.println(url);
 		SystemPrivilege sp = systemPrivilegeService.findByURL(url);
-		System.out.println(sp + "-->sp");
 		if (sp != null) { // request url is required
 			if (account != null && account.getGroups() != null) {
 				System.out.println(account + "-->account");

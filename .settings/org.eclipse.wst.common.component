@@ -3,7 +3,7 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-jee/web-resources"/>
         <wb-resource deploy-path="/" source-path="/WebRoot" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="qshzms"/>
         <property name="java-output-path" value="/qshzms/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="qshzms"/>
     </wb-module>
 </project-modules>

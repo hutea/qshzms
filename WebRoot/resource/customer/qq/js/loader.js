@@ -1,8 +1,8 @@
 $(document).ready(function() {
 	
 	// Settings
-	var slideToSpeed = 1000;
-	var slideUpSpeed = 700;
+	var slideToSpeed = 300;
+	var slideUpSpeed = 100;
 	var $easingType= 'easeInOutQuart';
 	
 	// Caching

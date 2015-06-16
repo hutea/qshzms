@@ -9,13 +9,13 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "bcqq_qicpinfo")
-public class QicpInfo {
+@Table(name = "bcqq_qicqinfo")
+public class QicqInfo {
 	@Id
 	private String id;
 
 	@Column(unique = true)
-	private String qicp;
+	private String qicq;
 
 	private Double money;
 
@@ -30,7 +30,9 @@ public class QicpInfo {
 
 	private Date sendTime;
 
-	private Boolean online;
+	private Date lastEditTime;
+
+	private Boolean online = true;
 
 	private Boolean visible = true;
 
@@ -42,12 +44,12 @@ public class QicpInfo {
 		this.id = id;
 	}
 
-	public String getQicp() {
-		return qicp;
+	public String getQicq() {
+		return qicq;
 	}
 
-	public void setQicp(String qicp) {
-		this.qicp = qicp;
+	public void setQicq(String qicq) {
+		this.qicq = qicq;
 	}
 
 	public Double getMoney() {
@@ -104,6 +106,14 @@ public class QicpInfo {
 
 	public void setDigit(int digit) {
 		this.digit = digit;
+	}
+
+	public Date getLastEditTime() {
+		return lastEditTime;
+	}
+
+	public void setLastEditTime(Date lastEditTime) {
+		this.lastEditTime = lastEditTime;
 	}
 
 }
