@@ -12,14 +12,14 @@
 <!-- scaling not possible (for smartphones, ipad, etc.) -->
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 
-<title>RAWA - A responsive &amp; minimal html template - Home - shared on mycodes.net</title>
-
+<title>QQ铺子 </title>
+<link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/resource/customer/qq/css/fonts.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/resource/customer/qq/css/style.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/resource/customer/qq/css/isotope.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/resource/customer/qq/css/mqueries.css" rel="stylesheet" type="text/css" media="screen" />
 
-<script src="files/js/jquery.modernizr.min.js"></script>
+<script src="${pageContext.request.contextPath}/resource/customer/qq/js/jquery.modernizr.min.js"></script>
 
 </head>
 <body>
@@ -29,7 +29,7 @@
     <div class="top_inner wrapper clearfix">
             
             <div class="widget left_float">
-            	<h6>站点名称</h6>			
+            	<h6>QQ铺子</h6>			
                 <div class="textwidget">关于本站的一些简要说明</div>
 			</div>                
             
@@ -97,68 +97,76 @@
 
 <section id="main">
     <div class="main_inner wrapper clearfix">        
-        <div id="masonry" class="entries clearfix">                
-                <div class="masonry_item entry post">
-                    <div class="img_holder">
-                            QQ:1234567890
-                        </div>
-                        
-                    <div class="entry-headline">
-                        <div class="entry-title"><h5>价格：<em style="color: red;">￥50.00</em></h5></div>
-
-                    </div>
-                        
-                    <div class="entry-info">
-                        <p>
-                            Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat magna eros eu erat.
-                        </p>
-                    </div>
-                </div>
-                
-                
-                <div class="masonry_item entry work motion">
-                    <div class="img_holder">
-						QQ:1234567890
-                    </div>
-                    
-                    <div class="entry-headline">
-                        <div class="entry-title"><h5>价格：<em style="color: red;">￥50.00</em></h5></div>
-                        
-                    </div>
-                    
-                    <div class="entry-info">
-                        
-                        <p>
-                            Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat magna eros eu erat.
-                        </p>
-                        
-                    </div>
-                </div>
-                                
-                
-                <div class="masonry_item entry work web">
-                    <div class="img_holder">
-						QQ:1231231230			
-                    </div>
-                    
-                    <div class="entry-headline">
-                        <div class="entry-title"><h5>价格：<em style="color: red;">￥50.00</em></h5></div>
-                        
-                    </div>
-                    
-                    <div class="entry-info">
-                        <p>
-                            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                        </p>
-                    </div>
-                </div>
-                
-                
-                
-                
-            </div><!-- END #masonry -->
-	</div>       
+        <div id="masonry" class="entries clearfix">  
+        		<c:forEach items="${pageView.records}" var="entry" varStatus="s">
+	                <div class="masonry_item entry">
+	                    <div class="img_holder">QQ号：<strong>${entry.qicq}</strong></div>
+	                    <div class="entry-headline">
+	                        <div class="entry-title"><h5>价格：<em style="color: red;">￥${entry.money}</em></h5></div>
+	                    </div>
+	                    <div class="entry-info">
+	                        <p>${entry.detail}</p>
+	                    </div>
+	                </div>
+        		</c:forEach>              
+         </div><!-- END #masonry -->
+	</div>   
+	
+	<c:if test="${pageView.totalrecord>0}">
+		<nav  class="text-center">
+			<ul class="pagination  pagination-lg">
+				<c:if test="${(pageView.currentPage-1)<1}">
+					<li class="disabled">
+						<a href='#'>Prev</a>
+					</li>
+				</c:if>
+				<c:if test="${(pageView.currentPage-1)>=1}">
+					<li>
+						<a href='${pageContext.request.contextPath}/qq/${pageView.currentPage-1}'>Prev</a>
+					</li>
+				</c:if>
+				<li>
+					<a href='${pageContext.request.contextPath}/qq/1' class="re" ${pageView.currentPage==1?'style="background-color: #efefef;"':''} >1</a>
+				</li>
+				<c:if test="${pageView.pageIndex.startindex>2}">
+					<li>
+						<a href='#'>...</a>
+					</li>
+				</c:if>
+				<c:forEach begin="${pageView.pageIndex.startindex}"
+					end="${pageView.pageIndex.endindex}" var="per">
+					<li>
+						<a href='${pageContext.request.contextPath}/qq/${per}' ${pageView.currentPage==per?'style="background-color: #efefef;"':''}>${per}</a>
+					</li>
+				</c:forEach>
+		
+				<c:if test="${pageView.pageIndex.endindex<pageView.totalPage-1}">
+					<li>
+						<a href='#'>...</a>
+					</li>
+				</c:if>
+		
+				<c:if test="${pageView.totalPage>=2}">
+					<li>
+						<a href='${pageContext.request.contextPath}/qq/${pageView.totalPage}' 	${pageView.currentPage==pageView.totalPage?'style="background-color: #efefef;"':''} >${pageView.totalPage}</a>
+					</li>
+				</c:if>
+		
+				<c:if test="${(pageView.currentPage+1)>pageView.totalPage}">
+					<li class="disabled">
+						<a href='#'>Next</a>
+					</li>
+				</c:if>
+				<c:if test="${(pageView.currentPage+1)<=pageView.totalPage}">
+					<li>
+						<a href='${pageContext.request.contextPath}/qq/${pageView.currentPage+1}'>Next</a>
+					</li>
+				</c:if>
+			</ul>
+		</nav>
+	</c:if>    
 </section> <!-- END #content -->
+    
     
 <footer id="footer">
 	<div class="footer_inner wrapper clearfix">
@@ -197,6 +205,7 @@
 </section>
 
 </div> <!-- END #page -->
+
 
 
 <!-- jquery -->

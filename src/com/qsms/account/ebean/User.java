@@ -31,7 +31,7 @@ public class User {
 	private int uploadSize=0;// 用户当天已上传图片M数
 	private int shareds=0;// 用户当天已分享记录数
 	private int comments=0;// 用户当天已评论记录数
-	private int lv = 1; // 用户级别：1=普通用户；2=邮箱用户；3=高级用户  4=vip用户 5=核心用户(发布直接成为站点认证)
+	private int lv = 1; // 用户级别：1=普通用户；2=邮箱用户；3=高级用户  4=vip用户 5=核心用户(发布直接成为站点认证，信息不能删除)
 	private Boolean visible = true;
 
 	public Boolean getVisible() {

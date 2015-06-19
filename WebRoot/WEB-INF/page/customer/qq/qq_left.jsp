@@ -5,7 +5,11 @@
 			<img class="img-circle" src="${pageContext.request.contextPath}/resource/chain/images/photos/profile.png" alt=""> 
 		</a>
 		<div class="media-body">
-			<h4 class="media-heading">${loginAccount.nickname}</h4>
+			<h4 class="media-heading"><span>服务日期：
+			<fmt:formatDate value="${loginAccount.serverStartDate}" pattern="yyyy年MM月dd日"/>
+			<fmt:formatDate value="${loginAccount.serverEndDate}" pattern="yyyy年MM月dd日"/>
+			</span> 
+			${loginAccount.nickname}</h4>
 		</div>
 	</div>
 	<!-- media -->

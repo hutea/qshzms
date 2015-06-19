@@ -4,7 +4,7 @@
  <c:forEach items="${list}" var="entry" varStatus="s">  
 		  <div class="item page-${page}">
               <div class="thumbnail">
-                <img src="${entry.url}" title='<fmt:formatDate value="${entry.createDate}" pattern="hh:mm:ss dd/MM"/>' 
+                <img src="${entry.url}" title='<fmt:formatDate value="${entry.createDate}" pattern="yyyy年MM月dd日 HH时mm分ss秒"/>' 
                 	class="big-image"	data-image="${entry.url}" data-title="大图欣赏" data-caption="www.qishimeishi.com"  />
               	<div class="caption">
               		<div class="row">

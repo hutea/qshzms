@@ -9,7 +9,7 @@
 		</c:if>
 		<c:if test="${(pageView.currentPage-1)>=1}">
 			<li>
-				<a href='${pageContext.request.contextPath}/share/page/${pageView.currentPage+1}'>Prev</a>
+				<a href='${pageContext.request.contextPath}/share/page/${pageView.currentPage-1}'>Prev</a>
 			</li>
 		</c:if>
 		<li>

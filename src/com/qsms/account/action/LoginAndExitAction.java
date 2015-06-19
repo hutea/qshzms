@@ -32,16 +32,20 @@ public class LoginAndExitAction {
 			@RequestParam String password) {
 		ModelAndView mav = new ModelAndView("signin");
 		Account account = accountService.findByUP(username, password);
-
-		if (account != null
-				&& account.getServerEndDate().getTime() > System
-						.currentTimeMillis()) {// 登录成功
-			HttpSession session = request.getSession();
-			accountService.update(account);
-			session.setAttribute("loginAccount", account);
-			mav = new ModelAndView("redirect:/manage/blog/list");
-		} else {
+		if (account == null) {
 			request.setAttribute("error", "用户名或密码错误");
+			return mav;
+		}
+		if (account.getServerEndDate().getTime() < System.currentTimeMillis()) {
+			request.setAttribute("error", "服务到期");
+			return mav;
+		}
+		HttpSession session = request.getSession();
+		accountService.update(account);
+		session.setAttribute("loginAccount", account);
+		mav = new ModelAndView("redirect:/manage/blog/list");
+		if ("caoyuan".equals(account.getUsername())) {
+			mav = new ModelAndView("redirect:/manage/qicq/list");
 		}
 		return mav;
 	}

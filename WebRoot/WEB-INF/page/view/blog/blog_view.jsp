@@ -73,7 +73,7 @@
                         <div class="pull-left tag-list">
                             <i class="fa fa-folder-open-o"></i>
                             <c:forEach items="${blog.tags}" var="tag" varStatus="s" >
-                            	<a href="/blog/tag/${tag.id}">${tag.name}</a> ${s.index+1!=fn:length(entry.tags)?",":""}
+                            	<a href="/blog/tag/${tag.id}">${tag.name}</a> ${s.index+1!=fn:length(blog.tags)?",":""}
                             </c:forEach>
                         </div>
                         <div class="pull-right share">

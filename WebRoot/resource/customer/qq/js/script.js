@@ -20,8 +20,8 @@ function initialise(content) {
 	------------------------------------------------*/
 	if (content == 'body') {
 		$('#slideup a').click(function() {
-			$('.bottom_inner').slideToggle(600, $easingType);
-			$(this).toggleClass('hide');
+			$('.bottom_inner').slideToggle(500, $easingType);
+			$(this).toggleClass('hidetag');
 			return(false);
 		});
 	}

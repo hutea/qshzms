@@ -53,7 +53,8 @@ public class ShareAction {
 		List<Object> params = new ArrayList<Object>();
 		params.add(true);
 		if (queryContent != null && !"".equals(queryContent)) {
-			jpql.append(" and (o.title like?2 or o.content like?3 )");
+			jpql.append(" and (o.title like?2 or o.content like?3 or o.id like?4 )");
+			params.add("%" + queryContent + "%");
 			params.add("%" + queryContent + "%");
 			params.add("%" + queryContent + "%");
 		}

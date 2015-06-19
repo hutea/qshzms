@@ -79,6 +79,9 @@ public class ShareFrontAction {
 			HttpSession session = request.getSession();
 			User loginUser = (User) session.getAttribute("loginUser");
 			User dbUser = userService.find(loginUser.getId());
+			if (dbUser == null || !dbUser.getVisible() || dbUser.getLv() < 5) {
+				return "帐户权限不足";
+			}
 			share.setId(Helper.generatorID());
 			share.setUser(dbUser);
 			if (dbUser.getLv() == 5) {

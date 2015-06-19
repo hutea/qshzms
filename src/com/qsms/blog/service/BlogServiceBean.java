@@ -45,7 +45,7 @@ public class BlogServiceBean extends DAOSupport<Blog> implements BlogService {
 	@Override
 	public Blog nextBlog(String bid) {
 		try {
-			return (Blog) em.createQuery("select b from Blog b where b.visible=?1 and b.id>?2 order by id desc").setParameter(1, true).setParameter(2, bid).setMaxResults(1)
+			return (Blog) em.createQuery("select b from Blog b where b.visible=?1 and b.id>?2 order by id asc").setParameter(1, true).setParameter(2, bid).setMaxResults(1)
 					.getSingleResult();
 		} catch (Exception e) {
 			return null;

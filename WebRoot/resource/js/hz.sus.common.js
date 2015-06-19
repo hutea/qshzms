@@ -80,6 +80,7 @@ $(function() {
 
 
 function save(type,title,content,view,url,tag){
+	$("#save").attr("disabled",true); 
 	$.post("/share/save", {
 		category : type,
 		title : title,
@@ -119,8 +120,10 @@ function save(type,title,content,view,url,tag){
 		    	$("#modal_progress").css('width','0%');
 		    	$("#modal_progress").html('');
 			}
+			$("#save").removeAttr("disabled");
 		}else{
 			alert(data);
+			$("#save").removeAttr("disabled");
 		}
 	});
 }

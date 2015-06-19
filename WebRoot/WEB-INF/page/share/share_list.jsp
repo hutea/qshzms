@@ -85,7 +85,7 @@
                                   <c:forEach items="${pageView.records}" var="entry" varStatus="s">  
 	                           	  	<tr id="tr_${entry.id}"">
 	                           		 <td>${s.index+1}</td> 
-	                           		 <td><fmt:formatDate value="${entry.createDate}" pattern="yyyy-MM-dd hh:mm:ss "/></td> 
+	                           		 <td><fmt:formatDate value="${entry.createDate}" pattern="yyyy-MM-dd HH:mm:ss "/></td> 
 	                           		 <td>${entry.title}</td> 
 	                           		 <td>${entry.siteauth?'站点认证':'普通分享'}</td> 
 	                           		 <td>

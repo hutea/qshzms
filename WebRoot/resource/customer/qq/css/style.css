@@ -68,7 +68,11 @@ body {
 ::selection { background:#72b6af; color:#fff; }
 ::-moz-selection { background:#72b6af; color:#fff; }
 ::-webkit-selection { background:#72b6af; color:#fff; }	
-
+ul.pagination li{
+	margin-left: 0;
+	margin-right: 0;
+	float: none;
+}
 
 /* Headings
 ---------------------------------------- */
@@ -541,7 +545,7 @@ Bottom
 	margin-left: -12px;
 	}
 	
-#slideup a.hide {
+#slideup a.hidetag {
 	background: url(../images/top.png) no-repeat bottom right;
 	}
 	
@@ -639,11 +643,12 @@ Entries
 .entry {
 	float: left;
 	width: 280px;
-	background: #CCFFCF;
+	background: #ffffff;
 	margin-right: 30px;
 	margin-bottom: 30px;
-	border-bottom: 1px solid #e0e0e0;
+	border:1px solid #e0e0e0;
 	position: relative;
+	color:#010101;
 	box-shadow:  rgba(0,0,0, 0.1) 0px 0px 3px;
 	-moz-box-shadow:  rgba(0,0,0, 0.1) 0px 0px 3px;
 	-webkit-box-shadow:  rgba(0,0,0, 0.1) 0px 0px 3px;

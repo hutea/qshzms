@@ -31,7 +31,7 @@ public class QicqInfoFrontAction {
 	@Autowired
 	private HttpServletRequest request;
 
-	private int maxresult = 12;
+	private int maxresult = 18;
 
 	@RequestMapping("/qq")
 	public ModelAndView qq() {
