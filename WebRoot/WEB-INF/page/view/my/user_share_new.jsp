@@ -7,12 +7,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="其实没事 分享 文章 视频 音乐 资源 下载 图片 大图 美图" />
+ 	<meta name="keywords" content="其实没事 分享 文章 视频 音乐 资源 下载 图片 大图 美图" />
+	<title>分享发布 个人中心 其实没事（专注分享的网站）</title>
     <link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resource/Font-Awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resource/jqueryFileUpload/css/jquery.fileupload.css" rel="stylesheet">  
     <link href="${pageContext.request.contextPath}/resource/jqueryFileUpload/css/jquery.fileupload-ui.css" rel="stylesheet">  
     <link href="${pageContext.request.contextPath}/resource/css/hz.ucenter.css" rel="stylesheet">
-    <title>后台管理页面</title>
 </head>
 <body>
     <%@ include file="/WEB-INF/page/view/my/user-center-head.jsp" %>

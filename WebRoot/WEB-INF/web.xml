@@ -8,7 +8,7 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
-<!-- 
+<!-- -->
 	<filter>
 		<filter-name>InControlFilter</filter-name>
 		<filter-class>com.qsms.util.InControlFilter</filter-class>
@@ -18,7 +18,7 @@
 		<url-pattern>/manage/*</url-pattern>
 	</filter-mapping>
 
- -->
+ 
 	<filter>
 		<filter-name>Character Encoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>

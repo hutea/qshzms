@@ -89,9 +89,7 @@ function preview()
 </script>
 </head>
 <body>
-<input type="file" name="pic" id="pic" onchange='loadImage(this)' />
-<input id='preview' type='button' value='preview'  onclick='preview();'>
-<div id='box'></div>
+
  
 </body>
 </html>

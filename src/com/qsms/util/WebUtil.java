@@ -229,7 +229,7 @@ public class WebUtil {
 		} catch (Exception e) {
 			System.err.println("Html2Text: " + e.getMessage());
 		}
-		return textStr;// 返回文本字符�?
+		return textStr;// 返回文本字符串
 	}
 
 }

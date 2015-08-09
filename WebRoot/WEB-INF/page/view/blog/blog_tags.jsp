@@ -6,8 +6,9 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <title>博客标签云  其实没事博客</title>
+	<meta name="description" content="其实没事  站长 博客 编程技术 python java hadoop lucene linux 大数据 集群" />
+ 	<meta name="keywords" content="其实没事  站长 博客 编程技术 python java hadoop lucene linux 大数据 集群" />
+	<title>标签云 其实没事（站长博客）</title>
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +31,8 @@
         //  2. Recent Post count
         var recent_post_count = 3;
     </script>
-
+    <%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>   
+    
 </head>
 <body class="home-template">
 

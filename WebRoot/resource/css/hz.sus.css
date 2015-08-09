@@ -102,6 +102,7 @@ body{
 .content-link{
 	font-size: 13px;
     color: #444443;
+    visibility: hidden;
 }
 
 

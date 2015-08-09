@@ -6,13 +6,14 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
-    <title>博客分类：${type.name} 其实没事 博客</title>
+	<meta name="description" content="其实没事  站长 博客 编程技术 python java hadoop lucene linux 大数据 集群" />
+ 	<meta name="keywords" content="其实没事  站长 博客 编程技术 python java hadoop lucene linux 大数据 集群" />
+	<title>${type.name} 其实没事（站长博客）</title>
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resource/Font-Awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet">
 	<link  href="${pageContext.request.contextPath}/resource/syntaxhighlighter_3.0.83/styles/shCoreDefault.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/resource/css/hz.blog.css" />
@@ -29,6 +30,8 @@
         //  2. Recent Post count
         var recent_post_count = 3;
     </script>
+    <%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>   
+        
 </head>
 <body class="home-template">
 

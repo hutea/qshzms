@@ -7,8 +7,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>文章分享</title>
-
+	<meta name="description" content="其实没事 分享 文章 视频 音乐 资源 下载 图片 大图 美图" />
+ 	<meta name="keywords" content="其实没事 分享 文章 视频 音乐 资源 下载 图片 大图 美图" />
+	<title>文章分享 其实没事（专注分享的网站）</title>
     <!-- Bootstrap -->
     <link href="${pageContext.request.contextPath}/resource/css/bootstrap.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resource/css/hz.sus.css" rel="stylesheet">
@@ -16,6 +17,7 @@
     <link href="${pageContext.request.contextPath}/resource/jqueryFileUpload/css/jquery.fileupload.css" rel="stylesheet">  
     <link href="${pageContext.request.contextPath}/resource/jqueryFileUpload/css/jquery.fileupload-ui.css" rel="stylesheet">  
     <link href="${pageContext.request.contextPath}/resource/bootswitch/bootstrap-switch.min.css" rel="stylesheet">  
+    <%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>
     
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
