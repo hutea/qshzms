@@ -36,12 +36,8 @@ public class PrivilegeGroup {
 	@ManyToMany(mappedBy = "groups", cascade = CascadeType.REFRESH)
 	private Set<Account> accounts = new LinkedHashSet<Account>();
 
-	/**
-	 * ���Ϊtrue��Ȩ�ޱ�ʾΪϵͳ��ʼȨ�ޣ����ܱ�ɾ��
-	 */
 	private Boolean initSign = false;
 
-	// ��Ȩ�������Ȩ��
 	public void addPrivilege(SystemPrivilege p) {
 		this.privileges.add(p);
 	}

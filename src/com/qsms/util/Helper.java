@@ -11,8 +11,48 @@ import java.util.Random;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+import net.sourceforge.pinyin4j.PinyinHelper;
+
 public class Helper {
 
+	/**
+	 * 
+	 * @param str
+	 * @param mode
+	 *            mode=1全拼模式；其他为简拼模式
+	 * @return
+	 */
+	public static String converPinYin(String str, int mode) {
+		str = delSESpaceStr(str);
+		char py[] = str.trim().toCharArray();
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < str.length(); i++) {
+			if (py[i] >= 'A' && py[i] <= 'Z' || py[i] >= 'a' && py[i] <= 'z'
+					|| py[i] >= '0' && py[i] <= '9') {
+				sb.append(py[i]);
+			} else {
+				try {
+					String[] pinyin = PinyinHelper
+							.toHanyuPinyinStringArray(py[i]);
+					if (mode == 1) {// 全拼模式
+						sb.append(pinyin[0].substring(0, pinyin[0].length() - 1));
+					} else {
+						sb.append(pinyin[0].substring(0, 1));
+					}
+				} catch (Exception e) {
+					sb.append(py[i]);
+				}
+			}
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * Email校验
+	 * 
+	 * @param email
+	 * @return
+	 */
 	public static boolean validateEmail(String email) {
 		boolean isValid = false;
 		try {
@@ -75,6 +115,11 @@ public class Helper {
 		return id;
 	}
 
+	/**
+	 * 获取Email验证码
+	 * 
+	 * @return
+	 */
 	public static String emailCode() {
 		return getRandomString(6);
 	}
@@ -110,6 +155,21 @@ public class Helper {
 	}
 
 	/**
+	 * 删除前后空白字符串
+	 */
+	private static String delSESpaceStr(String str) {
+		String beforeSttring = str;
+		if (str.startsWith(" ")) {
+			beforeSttring = str.replaceFirst("( )+", "");
+		}
+		StringBuffer sb = new StringBuffer(beforeSttring);
+		while (sb.toString().endsWith(" ")) {
+			sb.deleteCharAt(sb.toString().lastIndexOf(" "));
+		}
+		return sb.toString();
+	}
+
+	/**
 	 * 从富文本中获取图片URL
 	 * 
 	 * @param content
@@ -117,7 +177,8 @@ public class Helper {
 	 */
 	public static List<String> imagelist(String content) {
 		List<String> list = new ArrayList<String>();
-		String[] imgs = content.replaceAll("\"", "").replaceAll("'", "").split("<img(\\s)+");
+		String[] imgs = content.replaceAll("\"", "").replaceAll("'", "")
+				.split("<img(\\s)+");
 		for (String img : imgs) {
 			if (img.contains("src")) {
 				int start = img.indexOf("src");

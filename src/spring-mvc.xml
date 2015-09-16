@@ -83,13 +83,10 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
-	<task:scheduled-tasks>
-		<task:scheduled ref="imageTaskServiceBean" method="upload"
-			cron="0 0/10 * * * ?" />
-		<task:scheduled ref="fileCleanerTask" method="clear"
-			cron="0 0/30 * * * ?" />
-		<task:scheduled ref="resetDataTask" method="reset"
-			cron="0 55 23 * * ?" /> <!-- 每晚12：00《23：55》重置 -->
-	</task:scheduled-tasks>
+	<!-- <task:scheduled-tasks> <task:scheduled ref="imageTaskServiceBean" method="upload" 
+		cron="0 0/20 * * * ?" /> <task:scheduled ref="fileCleanerTask" method="clear" 
+		cron="0 0/50 * * * ?" /> <task:scheduled ref="resetDataTask" method="reset" 
+		cron="0 55 23 * * ?" /> 每晚12：00《23：55》重置 </task:scheduled-tasks> -->
+
 
 </beans>

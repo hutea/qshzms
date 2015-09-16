@@ -42,6 +42,14 @@
 				<li><a href='${pageContext.request.contextPath}/manage/account/group/list'>角色定义</a></li>
 			</ul>
 		</li>
+		<li <c:if test="${param.m==4||m==4}">class="active parent"</c:if> class="parent">
+			<a href=""><i class="fa fa-bars"></i><span>明星资源</span></a>
+			<ul class="children">
+				<li><a href='${pageContext.request.contextPath}/manage/star/new'>明星添加</a></li>
+				<li><a href='${pageContext.request.contextPath}/manage/star/list'>明星管理</a></li>
+				<li><a href='${pageContext.request.contextPath}/manage/star/category/list'>明星分类管理</a></li>
+			</ul>
+		</li>
 		<li <c:if test="${param.m==9||m==9}">class="active parent"</c:if> class="parent">
 			<a href=""><i class="fa fa-bars"></i><span>贴图库管理</span></a>
 			<ul class="children">

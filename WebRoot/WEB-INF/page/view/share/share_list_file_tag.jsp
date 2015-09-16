@@ -37,7 +37,7 @@
     		<div class="hz-per hz-per-file">
                 <div class="row hz-row-title">
                     <div class="col-md-2">
-                    		<c:if test="${entry.category==1}"><i class="fa fa-cloud-download fa-lg" style="color: #369;" ></i></c:if>
+                    	<c:if test="${entry.category==1}"><a href="${entry.url}" target="_blank"><i class="fa fa-cloud-download fa-lg" style="color: #369;" ></i></a></c:if>
                     </div>
                     <div class="col-xs-10 col-sm-10 col-md-8 h3 text-center"><a href="/share/view/${entry.id}">${entry.title}</a></div>
                     <div class="col-xs-2 col-sm-2 col-md-2">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="row hz-row-content">
                     <div class="col-md-12">
-                        <p id="share-content-${entry.id}" class="col-content">
+                        <div id="share-content-${entry.id}" class="col-content">
                         	<c:if test="${entry.view}">
 	                        	${entry.sumary}
 	                        	<c:if test="${entry.loadMore}">
@@ -76,15 +76,10 @@
                         				<div class="text-right content-link"><a href="/share/view/${entry.id}">查看全部</a></div>
                         		</c:if> 
                         		</c:if>
-                        		<c:if test="${!entry.comment}">分享者对内容设置了【评论可见】</c:if>
+                        		<c:if test="${!entry.comment}"><span title="">分享者对【内容】设置了评论可见，点击评论后隐藏的内容便会出现。</span></c:if>
                         	</c:if>
-                        </p>
+                        </div>
                     </div>
-                    <c:if test="${entry.category==1}">
-                    <p class="col-md-12">
-                        <span class="text-info"><strong>下载地址：</strong></span> <a href="${entry.url}" target="_blank">${entry.url}</a>
-                    </p>
-                	</c:if>
                 </div>
                  <div class="row hz-row-bottom">
                     <div class="col-xs-4 col-sm-4 col-md-3">

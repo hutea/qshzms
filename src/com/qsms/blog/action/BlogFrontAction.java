@@ -147,9 +147,9 @@ public class BlogFrontAction {
 		Blog blog = blogService.find(bid);
 		String cookieBID = WebUtil.getCookieValueByName(request, bid);
 		if (cookieBID == null) {
-			blog.setPv(blog.getPv()+Helper.randomRange(2, 5));
+			blog.setPv(blog.getPv()+Helper.randomRange(1, 2));
 			blogService.update(blog);
-			WebUtil.addCookie(response, bid, System.currentTimeMillis() + "-qsms", 8 * 3600);//
+			WebUtil.addCookie(response, bid, System.currentTimeMillis() + "-qsms", 2 * 3600);//
 		}
 		ModelAndView mav = new ModelAndView("view/blog/blog_view");
 		mav.addObject("blog", blog);

@@ -133,7 +133,6 @@ public class TieTuKuClient {
 			String json = post(ALBUM_URL, params, null);
 			ObjectMapper mapper = new ObjectMapper();
 			Album album = mapper.readValue(json, Album.class);
-			System.out.println(album.getInfo() + "~~");
 			return album.getCode();
 		} catch (Exception e) {
 			e.printStackTrace();

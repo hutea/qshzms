@@ -19,6 +19,7 @@ CKEDITOR.editorConfig = function( config ) {
     config.toolbar = 'Mytool';//config.toolbar = 'Basic';
     config.extraPlugins = 'himage,syntaxhighlight,autogrow,imageresize'; //自定义插件，多个用逗号分隔
     config.disableObjectResizing = false;//允许调整
+    config.autoGrow_maxHeight = 400;
     //config.autoGrow_bottomSpace = 80;
     config.resize_enabled = true; 
     //config.resize_maxHeight = 800; 

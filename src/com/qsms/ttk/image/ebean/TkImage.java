@@ -21,7 +21,7 @@ public class TkImage {
 	/** 存储在本地的源地址 或者网络图片地址 **/
 	private String oriurl;
 
-	/** 备份后的存储地址：/upload/20150602/uuid.img **/
+	/** 备份后的存储地址：/upload/20150602/id.图片后缀名 **/
 	private String backurl;
 
 	/** 图片的宽 **/

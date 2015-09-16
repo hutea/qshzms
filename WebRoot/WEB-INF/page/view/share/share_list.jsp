@@ -37,7 +37,7 @@
     		<div class="hz-per hz-per-file">
                 <div class="row hz-row-title">
                     <div class="col-md-2">
-                    	<c:if test="${entry.category==1}"><i class="fa fa-cloud-download fa-lg" style="color: #369;" ></i></c:if>
+                    	<c:if test="${entry.category==1}"><a href="${entry.url}" target="_blank"><i class="fa fa-cloud-download fa-lg" style="color: #369;" ></i></a></c:if>
                     	<c:if test="${entry.category==2}"><i class="fa fa-list-alt fa-lg" style="color: #138;" ></i></c:if>
                     	<c:if test="${entry.category==3}"><i class="fa fa-music fa-lg" style="color: #2a5;" ></i></c:if>
                     	<c:if test="${entry.category==4}"><i class="fa fa-video-camera fa-lg" style="color: #369;" ></i></c:if>
@@ -93,11 +93,6 @@
                         		<c:if test="${!entry.comment}"><span title="">分享者对【内容】设置了评论可见，点击评论后隐藏的内容便会出现。</span></c:if>
                         	</c:if>
                         </div>
-                        <c:if test="${entry.category==1}">
-	                   	 <p class="col-md-12">
-	                        <span class="text-info"><strong>下载地址：</strong></span> <a href="${entry.url}" target="_blank">${entry.url}</a>
-	                   	 </p>
-	                	</c:if>
                         <c:if test="${entry.category==5}">
                         	<p class="text-left"><img src="${entry.url}"  class="img-thumbnail"/></p>
                         </c:if>

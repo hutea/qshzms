@@ -36,7 +36,7 @@ public class BlogAction {
 	private BlogTagService blogTagService;
 	@Resource
 	private ImageTaskService imageTaskService;
-	private int maxresult = 5;
+	private int maxresult = 10;
 
 	@RequestMapping("/list")
 	public ModelAndView list(
@@ -91,7 +91,7 @@ public class BlogAction {
 		blog.setCreateDate(new Date());
 		blog.setLv(1);
 		blog.setLk(Helper.randomRange(5, 30));
-		blog.setPv(Helper.randomRange(10, 100));
+		blog.setPv(100);
 		blog.setText(summary);
 		if (summary.length() <= 250) {
 			blog.setSummary(summary);

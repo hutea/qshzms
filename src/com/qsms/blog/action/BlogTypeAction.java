@@ -54,7 +54,7 @@ public class BlogTypeAction {
 	@RequestMapping("/edit")
 	public ModelAndView editUI(@RequestParam String btid) {
 		BlogType blog = blogTypeService.find(btid);
-		ModelAndView mav = new ModelAndView("man/blog/blog_edit");
+		ModelAndView mav = new ModelAndView("blog/blog_edit");
 		// mav.addObject("types", types);
 		mav.addObject("blog", blog);
 		return mav;
