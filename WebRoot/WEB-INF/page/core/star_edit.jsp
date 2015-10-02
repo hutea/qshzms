@@ -54,9 +54,19 @@
 								 	  <label class="control-label" style="padding-top:4px" >明星名称</label>
 								      <input type="text" class="form-control" name="name" value="${star.name}">
 								    </div>
-								    <div class="col-md-5">
+								    <div class="col-md-6">
 								 	  <label class="control-label" style="padding-top:4px" >展示图片地址</label>
 								      <input type="text" class="form-control" name="imageUrl" value="${star.imageUrl}">
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="col-md-2">
+								 	  <label class="control-label" style="padding-top:4px" >明星代号</label>
+								      <input type="text" class="form-control" name="code"  value="${star.code}" >
+								    </div>
+								    <div class="col-md-6">
+								  		<label class="control-label" style="padding-top:4px" >小图片地址</label>
+								    	<input type="text" class="form-control" name="imgUrl"  value="${star.imgUrl}">
 								    </div>
 								  </div>
 								  <div class="form-group">
@@ -64,14 +74,33 @@
 								  		<label class="control-label" style="padding-top:4px" >排序级别</label>
 								  		<select name="lv" class="form-control">
 									    	<c:forEach begin="1" end="5" step="1" varStatus="s" > 
-									      	<option value="${s.index }" } >${s.index}</option>
+									      		<option value="${s.index }"  ${star.lv==s.index?"selected='selected'":""}  >${s.index}</option>
 									    	</c:forEach>
 									    </select>
+								    </div>
+								    <div class="col-md-2">
+								  		<label class="control-label" style="padding-top:4px" >首页排序标记</label>
+								  		<select name="iod" class="form-control">
+									    	<c:forEach begin="1" end="5" step="1" varStatus="s" > 
+									      	<option value="${s.index }"  ${star.iod==s.index?"selected='selected'":""}>${s.index}</option>
+									    	</c:forEach>
+									    </select>
+								    </div>
+							        <div class="col-md-2">
+								  		<label class="control-label" style="padding-top:4px" >分类</label>
+								    	<select name="type" class="form-control">
+								    		<option value="1" ${star.type==1?"selected='selected'":""} >华语</option>
+								    		<option value="2" ${star.type==2?"selected='selected'":""}>欧美</option>
+								    		<option value="3" ${star.type==3?"selected='selected'":""}>日韩</option>
+								    	</select>
 								    </div>
 							        <div class="col-md-2">
 								  		<label class="control-label" style="padding-top:4px" >浏览量</label>
 								    	<input type="text" class="form-control" name="pv" value="${star.pv}">
 								    </div>
+								 </div>
+								    
+								 <div class="form-group">
 							        <div class="col-md-2">
 								  		<label class="control-label" style="padding-top:4px" >简拼</label>
 								    	<input type="text" class="form-control" name="simplePy" value="${star.simplePy}">
@@ -81,14 +110,23 @@
 								    	<input type="text" class="form-control" name="fullPy" value="${star.fullPy}">
 								    </div>
 								  </div>
-								  
-								  <div class="form-group">
+								 <div class="form-group">
+								  	<div class="col-md-8">
+									<input  type="text" class="form-control" name="note" value="${star.note}" ></textarea>
+									</div>
+				                 </div>
+				                 <div class="form-group">
+								  	<div class="col-md-8">
+									<input  type="text" class="form-control" name="tagName" value="${star.tagName}" placeholder="标签名称：多个以#号分隔"  ></textarea>
+									</div>
+				                 </div>
+								 <div class="form-group">
 								  	<div class="col-md-8">
 										<textarea name="summary" style="height: 100px;border: 1px solid #d5d5d5;width:100%">${star.summary}</textarea>
 									</div>
 				                 </div>
 				                 <div class="form-group">
-								 	  <div class="col-md-7">
+								 	  <div class="col-md-8">
 								      <c:forEach items="${categorys}" var="entry" varStatus="s">  
 										  	<div class="col-md-3">
 										      	<input type="checkbox"  name="scids" value="${entry.id}" ${fn:contains(ugs, entry.id)?"checked='checked'":""}>${entry.name } 

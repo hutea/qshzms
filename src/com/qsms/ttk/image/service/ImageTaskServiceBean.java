@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.qsms.auxiliary.service.SystemConfigService;
 import com.qsms.blog.ebean.Blog;
 import com.qsms.blog.service.BlogService;
+import com.qsms.core.ebean.StarItem;
+import com.qsms.core.service.StarItemService;
 import com.qsms.share.ebean.Share;
 import com.qsms.share.service.ShareService;
 import com.qsms.ttk.TieTuKuClient;
@@ -30,6 +32,8 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 	private BlogService blogService;
 	@Resource
 	private ShareService shareService;
+	@Resource
+	private StarItemService starItemService;
 	@Resource
 	private TkImageService tkImageService;
 	@Resource
@@ -75,7 +79,113 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				blogProcess(imageTask, appRoot);
 			} else if (imageTask.getType() == 2) { // Share
 				shareProcess(imageTask, appRoot);
+			} else if (imageTask.getType() == 3) { // StarItem
+				starItemProcess(imageTask, appRoot);
 			}
+		}
+	}
+
+	private void starItemProcess(ImageTask imageTask, File appRootDir) {
+		StarItem starItem = starItemService.find(imageTask.getSobId());
+		if (!starItem.getVisible()) {// share被删除，则移出imageTask
+			dataLog.info("Share源被删除，ID:" + imageTask.getId());
+			this.delete(imageTask.getId());
+			return;
+		}
+		List<String> urlList = Helper.imagelist(starItem.getContent());
+		int total = urlList.size();
+		int i = 0;// 处理计数
+		int aid = Integer.parseInt(systemConfigService.starAid());
+		for (String url : urlList) {
+			dataLog.info("图片url：" + url);
+			if (systemConfigService.isExternalSite(url)) {// 存储在外链站的图片不需要替换
+				i++;
+				dataLog.info("在外链接站点：" + url);
+				continue;
+			}
+			UpLoadImage upimage = null;
+			File localImgFile = null;
+			if (url.startsWith("/resource")) {// 存储在本地
+				dataLog.info("本地图片上传：" + url);
+				localImgFile = new File(appRootDir, url);
+				upimage = TieTuKuClient.upload(localImgFile, aid);
+			} else {// 网络图片
+				dataLog.info("网络图片上传：" + url);
+				upimage = TieTuKuClient.upload(url, aid);
+			}
+			if (upimage != null) {// 上传成功
+				if (localImgFile != null) {// 删除本地图片
+					boolean delresult = localImgFile.delete();
+					dataLog.info("要删除本地图片的全路径："
+							+ localImgFile.getAbsolutePath());
+					dataLog.info("删除结果：" + delresult);
+				}
+				TkImage tkImage = new TkImage();
+				BeanUtils.copyProperties(upimage, tkImage);
+				tkImage.setOriurl(url); // 设置上传源地址
+				tkImage.setUploadTime(new Date()); // 设置上传时间
+				tkImage.setId(Helper.generatorID());
+				String linkurl = upimage.getLinkurl();
+				String find_url = linkurl
+						.substring(linkurl.lastIndexOf("/") + 1);
+				tkImage.setFind_url(find_url);
+				tkImage.setImageTask(imageTask);
+				tkImage.setStarItem(starItem);
+				tkImageService.save(tkImage);
+				starItem.setContent(starItem.getContent().replace(url,
+						upimage.getLinkurl()));// 更新内容图片地址
+				i++;
+			} else {
+				dataLog.info("上传失败：" + url + " ShARE ID:"
+						+ imageTask.getSobId());
+			}
+		}
+		// 如果是图片类型：
+		if (starItem.getShowImage() != null && !"".equals(starItem.getShowImage())) {
+			total = total + 1; // 对要处理的总数+1
+			UpLoadImage upimage = null;
+			File localImgFile = null;
+			if (starItem.getShowImage().startsWith("/resource")) {// 存储在本地需要上传
+				dataLog.info("图片类型：本地图片上传：" + starItem.getShowImage());
+				localImgFile = new File(appRootDir, starItem.getShowImage());
+				upimage = TieTuKuClient.upload(localImgFile, aid);
+			} else if (!systemConfigService
+					.isExternalSite(starItem.getShowImage())) {// 非外链站网络图片
+				dataLog.info("图片类型：网络图片上传：" + starItem.getShowImage());
+				upimage = TieTuKuClient.upload(starItem.getShowImage(), aid);
+			} else {
+				i++;
+			}
+			if (upimage != null) {// 上传成功
+				if (localImgFile != null) {// 删除本地文件
+					boolean delresult = localImgFile.delete();
+					dataLog.info("要删除本地图片的全路径："
+							+ localImgFile.getAbsolutePath());
+					dataLog.info("删除结果：" + delresult);
+				}
+				TkImage tkImage = new TkImage();
+				BeanUtils.copyProperties(upimage, tkImage);
+				tkImage.setOriurl(starItem.getShowImage()); // 设置上传源地址
+				tkImage.setUploadTime(new Date()); // 设置上传时间
+				tkImage.setId(Helper.generatorID());
+				String linkurl = upimage.getLinkurl();
+				String find_url = linkurl
+						.substring(linkurl.lastIndexOf("/") + 1);
+				tkImage.setFind_url(find_url);
+				tkImage.setImageTask(imageTask);
+				tkImage.setStarItem(starItem);
+				tkImageService.save(tkImage);
+				starItem.setShowImage(tkImage.getLinkurl());// 更新图片地址
+				i++;
+			} else {
+				dataLog.info("图片类型：上传失败：" + starItem.getShowImage()
+						+ " starItem ID:" + imageTask.getSobId());
+			}
+		}
+		starItemService.update(starItem); // 处理完成后更新(图片地址更新)
+		if (total == i) {
+			imageTask.setVisible(true); // 表示任务已处理
+			this.update(imageTask);
 		}
 	}
 
@@ -116,8 +226,8 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
-				tkImage.setOriurl(url); //设置上传源地址
-				tkImage.setUploadTime(new Date()); //设置上传时间
+				tkImage.setOriurl(url); // 设置上传源地址
+				tkImage.setUploadTime(new Date()); // 设置上传时间
 				tkImage.setId(Helper.generatorID());
 				String linkurl = upimage.getLinkurl();
 				String find_url = linkurl
@@ -160,8 +270,8 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
-				tkImage.setOriurl(share.getUrl()); //设置上传源地址
-				tkImage.setUploadTime(new Date()); //设置上传时间
+				tkImage.setOriurl(share.getUrl()); // 设置上传源地址
+				tkImage.setUploadTime(new Date()); // 设置上传时间
 				tkImage.setId(Helper.generatorID());
 				String linkurl = upimage.getLinkurl();
 				String find_url = linkurl
@@ -221,8 +331,8 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
-				tkImage.setOriurl(url); //设置上传源地址
-				tkImage.setUploadTime(new Date()); //设置上传时间
+				tkImage.setOriurl(url); // 设置上传源地址
+				tkImage.setUploadTime(new Date()); // 设置上传时间
 				tkImage.setId(Helper.generatorID());
 				String linkurl = upimage.getLinkurl();
 				String find_url = linkurl

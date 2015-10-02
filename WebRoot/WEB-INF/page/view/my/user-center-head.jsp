@@ -10,7 +10,7 @@
                     <ul class="nav navbar-nav ">
                          <li class=""><a href="/share">官方首页</a></li>
                          <li ><a href="/my/share/new">开始分享</a></li>
-                         <li ><a href="/my/star/new">明星资源发布</a></li>
+                         <li ><a href="/my/star/item/new">明星资源发布</a></li>
                     </ul>
                 	<button type="button" class="navbar-btn navbar-right btn btn-default" role="button" onclick="signout()">登出</button>
                     <ul class="nav navbar-nav navbar-right">
@@ -18,7 +18,7 @@
                         <li ><a href="/my/share">我的分享</a></li>
                         <li ><a href="/my/comment">评论记录</a></li>
                         <li ><a href="/my/report">举报记录</a></li>
-                        <li ><a href="/my/star/list">明星资源</a></li>
+                        <li ><a href="/my/star/item">明星资源</a></li>
                     </ul>
                 </div>
             </div>

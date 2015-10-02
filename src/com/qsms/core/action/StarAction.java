@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.qsms.account.ebean.PrivilegeGroup;
 import com.qsms.core.ebean.Star;
 import com.qsms.core.ebean.SupportCategory;
 import com.qsms.core.service.StarService;
@@ -62,12 +61,12 @@ public class StarAction {
 
 	@RequestMapping("/save")
 	public ModelAndView save(@ModelAttribute Star star,
-			@RequestParam(required = false) String[] scids) {
+			@RequestParam(required = false) Long[] scids) {
 		star.setId(Helper.generatorID());
 		star.setSimplePy(Helper.converPinYin(star.getName(), 2));
 		star.setFullPy(Helper.converPinYin(star.getName(), 1));
 		if (scids != null && scids.length > 0) {
-			for (String scid : scids) {
+			for (Long scid : scids) {
 				star.getCategorys().add(supportCategoryService.find(scid));
 			}
 		}
@@ -96,7 +95,7 @@ public class StarAction {
 	@RequestMapping("/update")
 	public ModelAndView update(@ModelAttribute Star star,
 			@RequestParam String sid,
-			@RequestParam(required = false) String[] scids) {
+			@RequestParam(required = false) Long[] scids) {
 		Star entity = starService.find(sid);
 		if (!star.getName().equals(entity.getName())) {// 姓名变化，则使用pinyin4j自动生成拼音
 			entity.setName(star.getName());
@@ -106,16 +105,19 @@ public class StarAction {
 			entity.setSimplePy(star.getSimplePy());
 			entity.setFullPy(star.getFullPy());
 		}
+		entity.setNote(star.getNote());
+		entity.setTagName(star.getTagName());
 		entity.setImageUrl(star.getImageUrl());
-		entity.setLv(star.getLv());
+		entity.setImgUrl(star.getImgUrl());
+		entity.setLv(star.getLv()); 
+		entity.setIod(star.getIod());
+		entity.setType(star.getType());
 		entity.setPv(star.getPv());
 		entity.setSummary(star.getSummary());
-
 		entity.getCategorys().clear();
 		System.out.println(scids.length);
 		if (scids != null && scids.length > 0) {
-			for (String scid : scids) {
-				System.out.println(scid);
+			for (Long scid : scids) {
 				entity.getCategorys().add(supportCategoryService.find(scid));
 			}
 		}

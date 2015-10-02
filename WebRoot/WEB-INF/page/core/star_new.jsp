@@ -53,9 +53,19 @@
 								 	  <label class="control-label" style="padding-top:4px" >明星名称</label>
 								      <input type="text" class="form-control" name="name" >
 								    </div>
-								    <div class="col-md-5">
+								    <div class="col-md-6">
 								 	  <label class="control-label" style="padding-top:4px" >展示图片地址</label>
 								      <input type="text" class="form-control" name="imageUrl" >
+								    </div>
+								  </div>
+		    					 <div class="form-group">
+								    <div class="col-md-2">
+								 	  <label class="control-label" style="padding-top:4px" >明星代号</label>
+								      <input type="text" class="form-control" name="code" >
+								    </div>
+								    <div class="col-md-6">
+								  		<label class="control-label" style="padding-top:4px" >小图片地址</label>
+								    	<input type="text" class="form-control" name="imgUrl">
 								    </div>
 								  </div>
 		    					 <div class="form-group">
@@ -63,23 +73,48 @@
 								  		<label class="control-label" style="padding-top:4px" >排序级别</label>
 								  		<select name="lv" class="form-control">
 									    	<c:forEach begin="1" end="5" step="1" varStatus="s" > 
-									      	<option value="${s.index }" } >${s.index}</option>
+									      	<option value="${s.index }" >${s.index}</option>
 									    	</c:forEach>
 									    </select>
+								    </div>
+								    <div class="col-md-2">
+								  		<label class="control-label" style="padding-top:4px" >首页排序标记</label>
+								  		<select name="iod" class="form-control">
+									    	<c:forEach begin="1" end="5" step="1" varStatus="s" > 
+									      	<option value="${s.index }"  >${s.index}</option>
+									    	</c:forEach>
+									    </select>
+								    </div>
+							        <div class="col-md-2">
+								  		<label class="control-label" style="padding-top:4px" >分类</label>
+								    	<select name="type" class="form-control">
+								    		<option value="1">华语</option>
+								    		<option value="2">欧美</option>
+								    		<option value="3">日韩</option>
+								    	</select>
 								    </div>
 							        <div class="col-md-2">
 								  		<label class="control-label" style="padding-top:4px" >浏览量</label>
 								    	<input type="text" class="form-control" name="pv" value="0">
 								    </div>
 								  </div>
-								  
 								 <div class="form-group">
-								  	<div class="col-md-7">
+								  	<div class="col-md-8">
+									<input  type="text" class="form-control" name="note"  placeholder="简语" ></textarea>
+									</div>
+				                 </div>
+								 <div class="form-group">
+								  	<div class="col-md-8">
+									<input  type="text" class="form-control" name="tagName" placeholder="标签名称：多个以#号分隔"  ></textarea>
+									</div>
+				                 </div>
+								 <div class="form-group">
+								  	<div class="col-md-8">
 									<textarea  name="summary" style="height: 150px;border: 1px solid #d5d5d5;width:100%"></textarea>
 									</div>
 				                 </div>
 								 <div class="form-group">
-								 	  <div class="col-md-7">
+								 	  <div class="col-md-8">
 								      <c:forEach items="${categorys}" var="entry" varStatus="s">  
 										  	<div class="col-md-3">
 										      	<input type="checkbox"  name="scids" value="${entry.id}">${entry.name } 
@@ -88,7 +123,7 @@
 								      </div>
 				                 </div>
 				                 <div class="form-group">
-				                 	<div class="text-center col-md-7">
+				                 	<div class="text-center col-md-8">
 				                 		<input type="reset" value="重置" class="btn btn-primary"/>
 				                 		<input type="submit" value="提交" class="btn btn-primary"/>
 				                 	</div>

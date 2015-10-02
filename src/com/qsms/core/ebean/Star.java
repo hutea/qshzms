@@ -5,6 +5,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -12,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 @Entity
@@ -21,44 +23,69 @@ public class Star {
 	@Id
 	private String id;
 
-	/** 名称 **/
+	/** 代码 */
+	@Column(unique = true)
+	private String code;
+
+	/** 名称 */
 	private String name;
 
-	/** 名称简拼 **/
+	/** 简短说明 */
+	private String note;
+
+	/** 分类：1=华语、2=欧美、3=日韩、（1-10明星资源）（11-20计算机资源预留） */
+	private int type = 1;
+
+	/** 首页排序使用：数字越大越靠前 */
+	private int iod = 1;
+
+	/** 名称简拼 */
 	private String simplePy;
 
-	/** 名称全拼 **/
+	/** 名称全拼 */
 	private String fullPy;
 
-	/** 图片地址 **/
+	/** 图片地址 */
 	private String imageUrl;
 
-	/** 摘要 **/
+	/** 小图片地址 */
+	private String imgUrl;
+
+	/** 摘要 */
 	@Lob
 	private String summary;
 
-	/** 创建日期 **/
+	/** 创建日期 */
 	private Date createDate = new Date();
 
-	/** 最后修改日期 **/
-	private Date modifyDate;
+	/** 最后修改日期，有资源发布时该日期进行更新 */
+	private Date modifyDate = new Date();
 
-	/** 浏览量 **/
+	/** 浏览量 */
 	private int pv = 0;
 
-	/** 排序级别 **/
+	/** 排序级别 */
 	private int lv = 1;
 
-	/** 拥有的资源数 **/
+	/** 拥有的资源数 */
 	private int resnum = 0;
 
-	private String tagid;
+	private String tagName;
 
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	@JoinTable(name = "t_star_category", joinColumns = @JoinColumn(name = "sc_id"), inverseJoinColumns = @JoinColumn(name = "star_id"))
+	@OrderBy(value = "lv asc")
 	private Set<SupportCategory> categorys = new LinkedHashSet<SupportCategory>();
 
 	private Boolean visible = true;
+
+	public String getNote() {
+		return note;
+	}
+
+	public void setNote(String note) {
+		this.note = note;
+	}
 
 	public String getId() {
 		return id;
@@ -164,12 +191,44 @@ public class Star {
 		this.resnum = resnum;
 	}
 
-	public String getTagid() {
-		return tagid;
+	public String getTagName() {
+		return tagName;
 	}
 
-	public void setTagid(String tagid) {
-		this.tagid = tagid;
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
+	}
+
+	public int getIod() {
+		return iod;
+	}
+
+	public void setIod(int iod) {
+		this.iod = iod;
 	}
 
 }

@@ -48,10 +48,20 @@
 				                <form class="form-inline" id="myform" action="${pageContext.request.contextPath}/manage/star/category/save" method="post" >
 				                     <input type="text" name="name" class="form-control" placeholder="分类名称">
 				                     <input type="text" name="lv" class="form-control" value="1"  placeholder="LEVEL">
+				                     <input type="text" name="background" class="form-control"   placeholder="背景色">
+				                     <input type="text" name="icon" class="form-control"  placeholder="图标">
                         			 <input type="submit" class="btn btn-primary" name="" value="提交">
 				                </form>
 				           </div>
 				      </div>
+             	 	  <div class="row" style="margin-bottom: 10px;">
+             	 	  	<div class="col-md-2"><i class="fa fa-vimeo-square fa-2x"></i>fa fa-vimeo-square</div>
+             	 	  	<div class="col-md-2"><i class="fa fa-desktop fa-2x"></i>fa fa-desktop</div>
+             	 	  	<div class="col-md-2"><i class="fa fa-music fa-2x"></i>fa fa-music</div>
+             	 	  	<div class="col-md-2"><i class="fa fa-play-circle fa-2x"></i>fa fa-play-circle</div>
+             	 	  	<div class="col-md-2"><i class="fa fa-align-justify fa-2x"></i>fa fa-align-justify</div>
+             	 	  	<div class="col-md-2"><i class="fa fa-square fa-2x"></i>fa fa-square</div>
+             	 	  </div>
 				      <div class="row">
 				      	<form id="pageList" action="${pageContext.request.contextPath}/manage/star/list" method="post">
 				      		<input type="hidden" name="page" value="${page}">
@@ -74,6 +84,8 @@
 						                     <input type="hidden" name="sid" value="${entry.id}" >
 						                     <input type="text" name="name" value="${entry.name}"  class="form-control" placeholder="分类名称">
 						                     <input type="text" name="lv" value="${entry.lv}" class="form-control"   placeholder="LEVEL">
+						                     <input type="text" name="background" value="${entry.background}" class="form-control"   placeholder="LEVEL">
+						                     <input type="text" name="icon" value="${entry.icon}" class="form-control"   placeholder="LEVEL">
 		                        			 <input type="submit" class="btn btn-primary" name="" value="修改">
 						                </form>
 	                           		 </td> 

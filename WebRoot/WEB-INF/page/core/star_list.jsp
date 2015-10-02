@@ -53,6 +53,10 @@
                                     <th>#</th>
                                     <th>ID</th>
                                     <th>姓名</th>
+                                    <th>分类</th>
+                                    <th>排序</th>
+                                    <th>首页排序</th>
+                                    <th>浏览量</th>
                                     <th>展示图</th>
                                     <th>操作</th>
                                 </tr>
@@ -63,6 +67,14 @@
 	                           		 <td>${s.index+1}</td> 
 	                           		 <td>${entry.id}</td> 
 	                           		 <td>${entry.name} ${entry.simplePy} ${entry.fullPy}</td> 
+	                           		 <td>
+	                           		 	<c:if test="${entry.type==1}">华语</c:if>
+	                           		 	<c:if test="${entry.type==2}">欧美</c:if>
+	                           		 	<c:if test="${entry.type==3}">日韩</c:if>
+	                           		 </td> 
+	                           		 <td>${entry.lv}</td> 
+	                           		 <td>${entry.iod}</td> 
+	                           		 <td>${entry.pv}</td> 
 	                           		 <td>${entry.imageUrl}</td> 
 	                           		 <td>
 	                           		 	<a href="${pageContext.request.contextPath}/manage/star/edit?sid=${entry.id}">修改</a>

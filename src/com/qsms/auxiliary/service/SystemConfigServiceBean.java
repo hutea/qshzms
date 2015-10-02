@@ -38,7 +38,8 @@ public class SystemConfigServiceBean extends DAOSupport<SystemConfig> implements
 	@Override
 	public int shareCommentReportedMax() {
 		try {
-			return Integer.parseInt(this.find("shareCommentReportedMax").getValue());
+			return Integer.parseInt(this.find("shareCommentReportedMax")
+					.getValue());
 		} catch (Exception e) {
 			return 1;
 		}
@@ -58,6 +59,15 @@ public class SystemConfigServiceBean extends DAOSupport<SystemConfig> implements
 	public String shareAid() {
 		try {
 			return this.find("shareAid").getValue();
+		} catch (Exception e) {
+			return "1047390"; // 返回默认相册ID
+		}
+	}
+
+	@Override
+	public String starAid() {
+		try {
+			return this.find("starAid").getValue();
 		} catch (Exception e) {
 			return "1047390"; // 返回默认相册ID
 		}

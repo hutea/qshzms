@@ -6,11 +6,15 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * 支持的分类
@@ -22,10 +26,17 @@ import javax.persistence.Table;
 @Table(name = "t_supportcatgory")
 public class SupportCategory {
 	@Id
-	private String id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
 	/** 名称 */
 	private String name;
+
+	/** 背景色 */
+	private String background;
+
+	/** 图标 */
+	private String icon;
 
 	/** 排序 */
 	private int lv;
@@ -35,11 +46,11 @@ public class SupportCategory {
 	@ManyToMany(mappedBy = "categorys", cascade = CascadeType.REFRESH)
 	private Set<Star> stars = new HashSet<Star>();
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -73,6 +84,22 @@ public class SupportCategory {
 
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
+	}
+
+	public String getBackground() {
+		return background;
+	}
+
+	public void setBackground(String background) {
+		this.background = background;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 }

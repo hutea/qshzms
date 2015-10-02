@@ -32,7 +32,7 @@ public class SupportCategoryAction {
 		PageView<SupportCategory> pageView = new PageView<SupportCategory>(
 				maxresult, page);
 		LinkedHashMap<String, String> orderby = new LinkedHashMap<String, String>();
-		orderby.put("lv", "desc");
+		orderby.put("lv", "asc");
 		StringBuffer jpql = new StringBuffer("o.visible=?1");
 		List<Object> params = new ArrayList<Object>();
 		params.add(true);
@@ -49,7 +49,6 @@ public class SupportCategoryAction {
 	// 添加
 	@RequestMapping("/save")
 	public ModelAndView save(@ModelAttribute SupportCategory category) {
-		category.setId(Helper.generatorID());
 		supportCategoryService.save(category);
 		ModelAndView mav = new ModelAndView("redirect:list");
 		return mav;
@@ -58,10 +57,12 @@ public class SupportCategoryAction {
 	// 修改
 	@RequestMapping("/update")
 	public ModelAndView update(@ModelAttribute SupportCategory SupportCategory,
-			@RequestParam String sid) {
+			@RequestParam Long sid) {
 		SupportCategory entity = supportCategoryService.find(sid);
 		entity.setLv(SupportCategory.getLv());
 		entity.setName(SupportCategory.getName());
+		entity.setBackground(SupportCategory.getBackground());
+		entity.setIcon(SupportCategory.getIcon());
 		supportCategoryService.update(entity);
 		ModelAndView mav = new ModelAndView("redirect:list?page=1");
 		return mav;

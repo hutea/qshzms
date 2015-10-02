@@ -13,7 +13,7 @@ public interface ImageTaskService extends DAO<ImageTask> {
 	 * 如果是在Share或Blog修改后，调用则设置对应的记录visible=false表示未处理来引发定时器重新处理。
 	 * 
 	 * @param type
-	 *            1:Blog/2:Share
+	 *            1:Blog/2:Share/3:资源
 	 * @param sobId
 	 *            Blog或Share的ID
 	 */

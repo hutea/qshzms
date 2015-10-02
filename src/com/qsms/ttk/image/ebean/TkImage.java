@@ -8,8 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.qsms.blog.ebean.Blog;
+import com.qsms.core.ebean.StarItem;
 import com.qsms.share.ebean.Share;
 
 @Entity
@@ -73,6 +75,13 @@ public class TkImage {
 	@ManyToOne(cascade = { CascadeType.REFRESH, }, optional = true)
 	@JoinColumn(name = "blog_id")
 	private Blog blog;
+
+	@ManyToOne(cascade = { CascadeType.REFRESH, }, optional = true)
+	@JoinColumn(name = "starItem_id")
+	private StarItem starItem;
+
+	@Transient
+	private String tagDes;// 图片标签描述信息
 
 	public String getId() {
 		return id;
@@ -144,6 +153,14 @@ public class TkImage {
 
 	public void setLinkurl(String linkurl) {
 		this.linkurl = linkurl;
+	}
+
+	public StarItem getStarItem() {
+		return starItem;
+	}
+
+	public void setStarItem(StarItem starItem) {
+		this.starItem = starItem;
 	}
 
 	public Share getShare() {
@@ -224,6 +241,14 @@ public class TkImage {
 
 	public void setBackurl(String backurl) {
 		this.backurl = backurl;
+	}
+
+	public String getTagDes() {
+		return tagDes;
+	}
+
+	public void setTagDes(String tagDes) {
+		this.tagDes = tagDes;
 	}
 
 }

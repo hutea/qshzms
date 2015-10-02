@@ -20,6 +20,13 @@ public interface SystemConfigService extends DAO<SystemConfig> {
 	public String shareAid();
 
 	/**
+	 * 得到明星资源条目(StarItem)存储相册id
+	 * 
+	 * @return
+	 */
+	public String starAid();
+
+	/**
 	 * Share被举报的最大值 如 <br>
 	 * 如果配置异常，则返回“2”
 	 * 

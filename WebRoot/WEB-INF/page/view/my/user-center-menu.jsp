@@ -6,6 +6,6 @@
          <a href="/my/share" class="list-group-item  ${mym==2?'active':''}">我的分享</a>
          <a href="/my/comment" class="list-group-item  ${mym==3?'active':''}">评论记录</a>
          <a href="/my/report" class="list-group-item  ${mym==4?'active':''}">举报记录</a>
-         <a href="#" class="list-group-item  ${mym==5?'active':''}">明星资源</a>
+         <a href="/my/star/item" class="list-group-item  ${mym==5?'active':''}">明星资源</a>
      </div>
 </div>
