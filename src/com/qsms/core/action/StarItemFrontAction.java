@@ -48,7 +48,7 @@ public class StarItemFrontAction {
 	public ModelAndView list(
 			@RequestParam(defaultValue = "1", required = false) int page) {
 		ModelAndView mav = new ModelAndView("view/core/starItem_list");
-		PageView<StarItem> pageView = new PageView<StarItem>(2, page);
+		PageView<StarItem> pageView = new PageView<StarItem>(15, page);
 		LinkedHashMap<String, String> orderby = new LinkedHashMap<String, String>();
 		orderby.put("modifyDate", "desc");
 		StringBuffer jpql = new StringBuffer("o.visible=?1");

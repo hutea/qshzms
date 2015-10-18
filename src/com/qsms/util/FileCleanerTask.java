@@ -18,7 +18,8 @@ public class FileCleanerTask {
 		File appRoot = dir.getParentFile().getParentFile();
 		File uploadDirs = new File(appRoot, "resource/upload");
 		double uploadSize = Helper.getDirSize(uploadDirs);
-		System.out.println("要清理的总目录大小为：" + uploadSize);
+		System.out.println("要清理的总目录大小为：" + uploadSize + " 清理的目录路径："
+				+ uploadDirs.getAbsolutePath());
 		if (uploadSize < 400) {// 小于400M不清理
 			return;
 		}

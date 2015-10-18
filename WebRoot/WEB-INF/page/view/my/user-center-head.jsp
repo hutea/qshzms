@@ -8,7 +8,6 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav ">
-                         <li class=""><a href="/share">官方首页</a></li>
                          <li ><a href="/my/share/new">开始分享</a></li>
                          <li ><a href="/my/star/item/new">明星资源发布</a></li>
                     </ul>

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="description" content="其实没事  站长 博客 编程技术 python java hadoop lucene linux 大数据 集群" />
  	<meta name="keywords" content="其实没事  站长 博客 编程技术 python java hadoop lucene linux 大数据 集群" />
-	<title>标签云 其实没事（站长博客）</title>
+	<title>博客标签云 </title>
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -69,7 +69,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        <p class="phone-info">明星资源站2群：<a href="#">104967927</a></p>
+                        <p class="phone-info"><a href="/">明星资源站</a>(QQ群2群：104967927)</a></p>
                     </div>
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="social-icons">
@@ -148,7 +148,7 @@
                             <div class="welcome-text">
                                 <h2><strong>${star.name}</strong></h2>
                                 <img src="${star.imageUrl }" class="img-responsive">
-                                <p>${star.summary }</p>
+                                <p style="text-align: left;text-indent: 2em">${star.summary }</p>
                             </div>
                         </div>
 						
@@ -160,7 +160,7 @@
                                     <div class="box-content profile">
                                         <h3 class="widget-title"><fmt:formatDate value="${si.showDate}" pattern="yyyy年MM月dd日"/></h3>
                                         <div class="profile-thumb">
-                                            <img src="${pageContext.request.contextPath}/${si.showImage}" alt="">
+                                            <img src="${si.showImage}" alt="">
                                         </div>
                                         <div class="profile-content">
                                             <h3 class="profile-name">${si.name }</h3>

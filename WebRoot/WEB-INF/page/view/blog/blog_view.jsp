@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="description" content="其实没事  站长 博客 编程技术 python java hadoop lucene linux 大数据 集群" />
  	<meta name="keywords" content="其实没事  站长 博客 编程技术 python java hadoop lucene linux 大数据 集群" />
-	<title>${blog.title} 其实没事（站长博客）</title>
+	<title>${blog.title}</title>
 
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -81,6 +81,17 @@
                         <div class="pull-right share">
                         </div>
                     </footer>
+                    
+                    <!--高速版-->
+					<div id="SOHUCS" sid="${blog.id}"></div>
+					<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+					<script type="text/javascript">
+					    window.changyan.api.config({
+					        appid: 'cyrYRsxhH',
+					        conf: 'prod_fe34c82a093404d36eaa4592faaad6e3'
+					    });
+					</script>
+					  
                 </article>
 
                 <nav class="prev-next-wrap clearfix" >

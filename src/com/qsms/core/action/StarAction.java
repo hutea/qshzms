@@ -114,8 +114,8 @@ public class StarAction {
 		entity.setType(star.getType());
 		entity.setPv(star.getPv());
 		entity.setSummary(star.getSummary());
+		entity.setCode(star.getCode());
 		entity.getCategorys().clear();
-		System.out.println(scids.length);
 		if (scids != null && scids.length > 0) {
 			for (Long scid : scids) {
 				entity.getCategorys().add(supportCategoryService.find(scid));

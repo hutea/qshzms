@@ -16,6 +16,9 @@ public class ImageTask {
 	/** 记录来源ID **/
 	private String sobId;
 
+	/** 重试次数 */
+	private int retry = 0;
+
 	private boolean visible = false; // true表示已处理
 
 	public String getId() {
@@ -32,6 +35,14 @@ public class ImageTask {
 
 	public void setType(int type) {
 		this.type = type;
+	}
+
+	public int getRetry() {
+		return retry;
+	}
+
+	public void setRetry(int retry) {
+		this.retry = retry;
 	}
 
 	public String getSobId() {

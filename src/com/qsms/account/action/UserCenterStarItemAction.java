@@ -229,7 +229,6 @@ public class UserCenterStarItemAction {
 	public @ResponseBody
 	String starQueryJson(@PathVariable String keyword) {
 		try {
-			Map<String, Object> dataMap = new HashMap<String, Object>();
 			ObjectMapper mapper = new ObjectMapper();
 			LinkedHashMap<String, String> orderby = new LinkedHashMap<String, String>();
 			orderby.put("id", "desc");
@@ -245,11 +244,12 @@ public class UserCenterStarItemAction {
 					jpql.toString(), params.toArray(), orderby).getResultList();
 			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 			for (Star star : stars) {
-				dataMap.put("id", star.getId());
-				dataMap.put("label", star.getName());
-				dataMap.put("icon", star.getImgUrl());
-				dataMap.put("resnum", star.getResnum());
-				list.add(dataMap);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("id", star.getId());
+				map.put("label", star.getName());
+				map.put("icon", star.getImgUrl());
+				map.put("resnum", star.getResnum());
+				list.add(map);
 			}
 			String json = mapper.writeValueAsString(list);
 			return json;

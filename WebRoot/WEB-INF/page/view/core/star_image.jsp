@@ -1,6 +1,8 @@
 <%@ page language="java"  pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/page/common/taglib.jsp" %>
+<c:if test="${fn:length(pageView.records)>0}">
 <div>第${pageView.currentPage}页</div>
+</c:if>
  <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
  		<c:forEach items="${pageView.records }" var="entry">
 	        <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">

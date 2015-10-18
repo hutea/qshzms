@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,9 +53,9 @@ public class StarFrontAction {
 		ModelAndView mav = new ModelAndView("view/core/star_index");
 		mav.addObject("indexStarList", starService.listIndex());// 首页推荐
 		mav.addObject("lastStarList", starService.listLastUpdate(10));// 最近更新明星资源
-		mav.addObject("hyStarList", starService.listByTypeBasePV(1, 4));
-		mav.addObject("omStarList", starService.listByTypeBasePV(2, 4));
-		mav.addObject("rhStarList", starService.listByTypeBasePV(3, 4));
+		mav.addObject("hyStarList", starService.listByTypeBasePV(1, 3));
+		mav.addObject("omStarList", starService.listByTypeBasePV(2, 3));
+		mav.addObject("rhStarList", starService.listByTypeBasePV(3, 3));
 		mav.addObject("starItemList", starItemService.listLastUpdate(6));
 		return mav;
 	}
@@ -64,7 +63,7 @@ public class StarFrontAction {
 	@RequestMapping("/list/{way}")
 	public ModelAndView list(@PathVariable String way,
 			@RequestParam(defaultValue = "1", required = false) int page) {
-		int maxresult = 2;
+		int maxresult = 16;
 		ModelAndView mav = new ModelAndView("view/core/star_list");
 		PageView<Star> pageView = new PageView<Star>(maxresult, page);
 		LinkedHashMap<String, String> orderby = new LinkedHashMap<String, String>();

@@ -80,7 +80,7 @@
 					<div class="one-sixth">
 						<div class="meta-entry">
 							<a href="#" class="date"><span title="发布时间"><fmt:formatDate value="${entry.createDate}" pattern="yyyy-MM-dd"/></span></a>
-							<a href="#" class="author"><span>${entry.star.name}</span></a>
+							<a href="/star/view/${entry.star.code }" class="author"><span>${entry.star.name}</span></a>
 							<span class="category">${entry.category.name }</span>
 						</div><!--/ .meta-entry-->
 					</div><!--/ .one-sixth-->

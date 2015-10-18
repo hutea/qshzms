@@ -72,23 +72,33 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				.getPath();
 		File dir = new File(path);
 		File appRoot = dir.getParentFile().getParentFile();
-		dataLog.info(new Date() + "开始执行上传任务" + appRoot);
 		List<ImageTask> tasks = this.listUnUpload(10);
-		for (ImageTask imageTask : tasks) {
-			if (imageTask.getType() == 1) {// 博客
-				blogProcess(imageTask, appRoot);
-			} else if (imageTask.getType() == 2) { // Share
-				shareProcess(imageTask, appRoot);
-			} else if (imageTask.getType() == 3) { // StarItem
-				starItemProcess(imageTask, appRoot);
+		dataLog.info(new Date() + "开始执行上传任务，任务数：" + tasks.size() + "根路径："
+				+ appRoot);
+		try {
+			for (ImageTask imageTask : tasks) {
+				dataLog.info("t_imagetask ID:" + imageTask.getId());
+				imageTask.setRetry(imageTask.getRetry() + 1);// 对重试次数+1
+				this.update(imageTask);
+				if (imageTask.getType() == 1) {// 博客
+					blogProcess(imageTask, appRoot);
+				}
+				if (imageTask.getType() == 2) { // Share
+					shareProcess(imageTask, appRoot);
+				}
+				if (imageTask.getType() == 3) { // StarItem
+					starItemProcess(imageTask, appRoot);
+				}
 			}
+		} catch (Exception e) {
+			dataLog.info("图片上传任务执行异常：" + e.toString());
 		}
 	}
 
 	private void starItemProcess(ImageTask imageTask, File appRootDir) {
 		StarItem starItem = starItemService.find(imageTask.getSobId());
 		if (!starItem.getVisible()) {// share被删除，则移出imageTask
-			dataLog.info("Share源被删除，ID:" + imageTask.getId());
+			dataLog.info("【Star】源被删除，ID:" + imageTask.getId());
 			this.delete(imageTask.getId());
 			return;
 		}
@@ -97,28 +107,28 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 		int i = 0;// 处理计数
 		int aid = Integer.parseInt(systemConfigService.starAid());
 		for (String url : urlList) {
-			dataLog.info("图片url：" + url);
+			dataLog.info("【Star】图片url：" + url);
 			if (systemConfigService.isExternalSite(url)) {// 存储在外链站的图片不需要替换
 				i++;
-				dataLog.info("在外链接站点：" + url);
+				dataLog.info("【Star】在外链接站点：" + url);
 				continue;
 			}
 			UpLoadImage upimage = null;
 			File localImgFile = null;
 			if (url.startsWith("/resource")) {// 存储在本地
-				dataLog.info("本地图片上传：" + url);
+				dataLog.info("【Star】本地图片上传：" + url);
 				localImgFile = new File(appRootDir, url);
 				upimage = TieTuKuClient.upload(localImgFile, aid);
 			} else {// 网络图片
-				dataLog.info("网络图片上传：" + url);
+				dataLog.info("【Star】网络图片上传：" + url);
 				upimage = TieTuKuClient.upload(url, aid);
 			}
 			if (upimage != null) {// 上传成功
 				if (localImgFile != null) {// 删除本地图片
 					boolean delresult = localImgFile.delete();
-					dataLog.info("要删除本地图片的全路径："
+					dataLog.info("【Star】要删除本地图片的全路径："
 							+ localImgFile.getAbsolutePath());
-					dataLog.info("删除结果：" + delresult);
+					dataLog.info("【Star】删除结果：" + delresult);
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
@@ -136,22 +146,23 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 						upimage.getLinkurl()));// 更新内容图片地址
 				i++;
 			} else {
-				dataLog.info("上传失败：" + url + " ShARE ID:"
+				dataLog.info("上传失败：" + url + " StarItem ID:"
 						+ imageTask.getSobId());
 			}
 		}
-		// 如果是图片类型：
-		if (starItem.getShowImage() != null && !"".equals(starItem.getShowImage())) {
+		// 处理展示图
+		if (starItem.getShowImage() != null
+				&& !"".equals(starItem.getShowImage())) {
 			total = total + 1; // 对要处理的总数+1
 			UpLoadImage upimage = null;
 			File localImgFile = null;
 			if (starItem.getShowImage().startsWith("/resource")) {// 存储在本地需要上传
-				dataLog.info("图片类型：本地图片上传：" + starItem.getShowImage());
+				dataLog.info("【Star】图片类型：本地图片上传：" + starItem.getShowImage());
 				localImgFile = new File(appRootDir, starItem.getShowImage());
 				upimage = TieTuKuClient.upload(localImgFile, aid);
-			} else if (!systemConfigService
-					.isExternalSite(starItem.getShowImage())) {// 非外链站网络图片
-				dataLog.info("图片类型：网络图片上传：" + starItem.getShowImage());
+			} else if (!systemConfigService.isExternalSite(starItem
+					.getShowImage())) {// 非外链站网络图片
+				dataLog.info("【Star】图片类型：网络图片上传：" + starItem.getShowImage());
 				upimage = TieTuKuClient.upload(starItem.getShowImage(), aid);
 			} else {
 				i++;
@@ -159,9 +170,9 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 			if (upimage != null) {// 上传成功
 				if (localImgFile != null) {// 删除本地文件
 					boolean delresult = localImgFile.delete();
-					dataLog.info("要删除本地图片的全路径："
+					dataLog.info("【Star】要删除本地图片的全路径："
 							+ localImgFile.getAbsolutePath());
-					dataLog.info("删除结果：" + delresult);
+					dataLog.info("【Star】删除结果：" + delresult);
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
@@ -178,7 +189,7 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				starItem.setShowImage(tkImage.getLinkurl());// 更新图片地址
 				i++;
 			} else {
-				dataLog.info("图片类型：上传失败：" + starItem.getShowImage()
+				dataLog.info("【Star】图片类型：上传失败：" + starItem.getShowImage()
 						+ " starItem ID:" + imageTask.getSobId());
 			}
 		}
@@ -192,7 +203,7 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 	private void shareProcess(ImageTask imageTask, File appRootDir) {
 		Share share = shareService.find(imageTask.getSobId());
 		if (!share.getVisible()) {// share被删除，则移出imageTask
-			dataLog.info("Share源被删除，ID:" + imageTask.getId());
+			dataLog.info("【Share】源被删除，ID:" + imageTask.getId());
 			this.delete(imageTask.getId());
 			return;
 		}
@@ -201,28 +212,28 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 		int i = 0;// 处理计数
 		int aid = Integer.parseInt(systemConfigService.shareAid());
 		for (String url : urlList) {
-			dataLog.info("图片url：" + url);
+			dataLog.info("【Share】图片url：" + url);
 			if (systemConfigService.isExternalSite(url)) {// 存储在外链站的图片不需要替换
 				i++;
-				dataLog.info("在外链接站点：" + url);
+				dataLog.info("【Share】在外链接站点：" + url);
 				continue;
 			}
 			UpLoadImage upimage = null;
 			File localImgFile = null;
 			if (url.startsWith("/resource")) {// 存储在本地
-				dataLog.info("本地图片上传：" + url);
+				dataLog.info("【Share】本地图片上传：" + url);
 				localImgFile = new File(appRootDir, url);
 				upimage = TieTuKuClient.upload(localImgFile, aid);
 			} else {// 网络图片
-				dataLog.info("网络图片上传：" + url);
+				dataLog.info("【Share】网络图片上传：" + url);
 				upimage = TieTuKuClient.upload(url, aid);
 			}
 			if (upimage != null) {// 上传成功
 				if (localImgFile != null) {// 删除本地图片
 					boolean delresult = localImgFile.delete();
-					dataLog.info("要删除本地图片的全路径："
+					dataLog.info("【Share】要删除本地图片的全路径："
 							+ localImgFile.getAbsolutePath());
-					dataLog.info("删除结果：" + delresult);
+					dataLog.info("【Share】删除结果：" + delresult);
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
@@ -242,7 +253,7 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 						upimage.getLinkurl()));// 更新摘要图片地址
 				i++;
 			} else {
-				dataLog.info("上传失败：" + url + " ShARE ID:"
+				dataLog.info("【Share】上传失败：" + url + " ShARE ID:"
 						+ imageTask.getSobId());
 			}
 		}
@@ -252,11 +263,11 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 			UpLoadImage upimage = null;
 			File localImgFile = null;
 			if (share.getUrl().startsWith("/resource")) {// 存储在本地需要上传
-				dataLog.info("图片类型：本地图片上传：" + share.getUrl());
+				dataLog.info("【Share】图片类型：本地图片上传：" + share.getUrl());
 				localImgFile = new File(appRootDir, share.getUrl());
 				upimage = TieTuKuClient.upload(localImgFile, aid);
 			} else if (!systemConfigService.isExternalSite(share.getUrl())) {// 非外链站网络图片
-				dataLog.info("图片类型：网络图片上传：" + share.getUrl());
+				dataLog.info("【Share】图片类型：网络图片上传：" + share.getUrl());
 				upimage = TieTuKuClient.upload(share.getUrl(), aid);
 			} else {
 				i++;
@@ -264,9 +275,9 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 			if (upimage != null) {// 上传成功
 				if (localImgFile != null) {// 删除本地文件
 					boolean delresult = localImgFile.delete();
-					dataLog.info("要删除本地图片的全路径："
+					dataLog.info("【Share】要删除本地图片的全路径："
 							+ localImgFile.getAbsolutePath());
-					dataLog.info("删除结果：" + delresult);
+					dataLog.info("【Share】删除结果：" + delresult);
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
@@ -283,8 +294,8 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 				share.setUrl(tkImage.getLinkurl());// 更新图片地址
 				i++;
 			} else {
-				dataLog.info("图片类型：上传失败：" + share.getUrl() + " ShARE ID:"
-						+ imageTask.getSobId());
+				dataLog.info("【Share】图片类型：上传失败：" + share.getUrl()
+						+ " ShARE ID:" + imageTask.getSobId());
 			}
 		}
 		shareService.update(share); // 处理完成后更新(图片地址更新)
@@ -297,37 +308,37 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 	private void blogProcess(ImageTask imageTask, File appRootDir) {
 		Blog blog = blogService.find(imageTask.getSobId());
 		if (!blog.getVisible()) {// blog被删除，则移出imageTask
-			dataLog.info("Blog源被删除，ID:" + imageTask.getId());
+			dataLog.info("【Blog】源被删除，ID:" + imageTask.getId());
 			this.delete(imageTask.getId());
 			return;
 		}
 		List<String> urlList = Helper.imagelist(blog.getContent());
 		int i = 0;// 处理计算器
 		for (String url : urlList) {
-			dataLog.info("图片url：" + url);
+			dataLog.info("【Blog】图片url：" + url);
 			if (systemConfigService.isExternalSite(url)) {// 存储在外链站的图片不需要替换
 				i++;
-				dataLog.info("在外链接站点：" + url);
+				dataLog.info("【Blog】在外链接站点：" + url);
 				continue;
 			}
 			int aid = Integer.parseInt(systemConfigService.blogAid());
 			UpLoadImage upimage = null;
 			File localImgFile = null;
 			if (url.startsWith("/resource")) {// 存储在本地
-				dataLog.info("本地图片上传：" + url);
+				dataLog.info("【Blog】本地图片上传：" + url);
 				localImgFile = new File(appRootDir, url);
 				upimage = TieTuKuClient.upload(localImgFile, aid);
 			} else {// 网络图片
-				dataLog.info("网络图片上传：" + url);
+				dataLog.info("【Blog】网络图片上传：" + url);
 				upimage = TieTuKuClient.upload(url, aid);
 			}
-			dataLog.info("上传结果：" + upimage + "#");
+			dataLog.info("【Blog】上传结果：" + upimage + "#");
 			if (upimage != null) {// 上传成功
 				if (localImgFile != null) {
 					boolean delresult = localImgFile.delete();
-					dataLog.info("要删除本地图片的全路径："
+					dataLog.info("【Blog】要删除本地图片的全路径："
 							+ localImgFile.getAbsolutePath());
-					dataLog.info("删除结果：" + delresult);
+					dataLog.info("【Blog】删除结果：" + delresult);
 				}
 				TkImage tkImage = new TkImage();
 				BeanUtils.copyProperties(upimage, tkImage);
@@ -345,7 +356,7 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 						upimage.getLinkurl()));// 更新引用地址
 				i++;
 			} else {
-				dataLog.info("上传失败：" + url);
+				dataLog.info("【Blog】上传失败：" + url);
 			}
 		}
 		blogService.update(blog); // 处理完成后更新(图片地址更新)
@@ -359,8 +370,8 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 	private List<ImageTask> listUnUpload(int maxresult) {
 		return em
 				.createQuery(
-						"select o from ImageTask o where o.visible=?1 order by o.id asc")
-				.setParameter(1, false).setMaxResults(maxresult)
-				.getResultList();
+						"select o from ImageTask o where o.visible=?1 and o.retry<=?2 order by o.id asc")
+				.setParameter(1, false).setParameter(2, 10)
+				.setMaxResults(maxresult).getResultList();
 	}
 }

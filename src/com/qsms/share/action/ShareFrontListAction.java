@@ -56,14 +56,14 @@ public class ShareFrontListAction {
 		params.add(true);
 		params.add(systemConfigService.shareReportedMax());
 		params.add(5);
-		pageView.setQueryResult(shareService.getScrollData(pageView
-				.getFirstResult(), maxresult, jpql.toString(),
+		pageView.setQueryResult(shareService.getScrollData(
+				pageView.getFirstResult(), maxresult, jpql.toString(),
 				params.toArray(), orderby));
 		User user = WebUtil.getLoginUser(request);
 		for (Share share : pageView.getRecords()) {
 			if (user != null) {
-				long comt = shareCommentService.countBySuid(share.getId(), user
-						.getId());
+				long comt = shareCommentService.countBySuid(share.getId(),
+						user.getId());
 				share.viewload(user, comt);
 			} else {
 				share.viewload(user, 0);
@@ -92,8 +92,8 @@ public class ShareFrontListAction {
 		User user = WebUtil.getLoginUser(request);
 		for (Share share : pageView.getRecords()) {
 			if (user != null) {
-				long comt = shareCommentService.countBySuid(share.getId(), user
-						.getId());
+				long comt = shareCommentService.countBySuid(share.getId(),
+						user.getId());
 				share.viewload(user, comt);
 			} else {
 				share.viewload(user, 0);
@@ -152,14 +152,14 @@ public class ShareFrontListAction {
 			mav.addObject("m", 0);// 菜单“class=active”使用
 		}
 
-		pageView.setQueryResult(shareService.getScrollData(pageView
-				.getFirstResult(), maxresult, jpql.toString(),
+		pageView.setQueryResult(shareService.getScrollData(
+				pageView.getFirstResult(), maxresult, jpql.toString(),
 				params.toArray(), orderby));
 		User user = WebUtil.getLoginUser(request);
 		for (Share share : pageView.getRecords()) {
 			if (user != null) {
-				long comt = shareCommentService.countBySuid(share.getId(), user
-						.getId());
+				long comt = shareCommentService.countBySuid(share.getId(),
+						user.getId());
 				share.viewload(user, comt);
 			} else {
 				share.viewload(user, 0);
@@ -207,8 +207,8 @@ public class ShareFrontListAction {
 		User user = WebUtil.getLoginUser(request);
 		for (Share share : pageView.getRecords()) {
 			if (user != null) {
-				long comt = shareCommentService.countBySuid(share.getId(), user
-						.getId());
+				long comt = shareCommentService.countBySuid(share.getId(),
+						user.getId());
 				share.viewload(user, comt);
 			} else {
 				share.viewload(user, 0);
@@ -240,8 +240,8 @@ public class ShareFrontListAction {
 		params.add(true);
 		params.add(systemConfigService.shareReportedMax());
 		params.add(5);
-		pageView.setQueryResult(shareService.getScrollData(pageView
-				.getFirstResult(), maxresult, jpql.toString(),
+		pageView.setQueryResult(shareService.getScrollData(
+				pageView.getFirstResult(), maxresult, jpql.toString(),
 				params.toArray(), orderby));
 		mav.addObject("list", pageView.getRecords());
 		mav.addObject("page", page);

@@ -21,7 +21,8 @@
                 <p class="navbar-text"><strong>其实、没事</strong></p>
             </div>
             <ul class="nav navbar-nav"> 
-                <li ${m==null||m==0?'class="active" ':''}><a href="/share">首页</a></li>
+                <li><a href="/star/index">明星资源站</a></li>
+                <li ${m==null||m==0?'class="active" ':''}><a href="/share">最新</a></li>
                 <li ${m==1?'class="active" ':''}><a href="/share/file"><i class="icon-download-alt"></i>资源</a></li>
                 <li ${m==2?'class="active" ':''}><a href="/share/article">文章</a></li>
                 <li ${m==3?'class="active" ':''}><a href="/share/music">音乐</a></li>

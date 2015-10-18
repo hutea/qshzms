@@ -6,7 +6,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<title>明星资源站 ${title}</title>
+	<title>明星资源站</title>
 	<meta name="description" content="明星资源站 其实没事">
 	<meta name="author" content="">
 	
@@ -47,7 +47,7 @@
 					<li>Show:</li>
 					<li><a data-categories="*">All</a></li>
 					<li><a data-categories="type_1">华语</a></li>
-					<li><a data-categories="type_3">欧美</a></li>
+					<li><a data-categories="type_2">欧美</a></li>
 					<li><a data-categories="type_3">日韩</a></li>
 				</ul><!-- end #portfolio-items-filter -->
 				

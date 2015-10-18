@@ -78,7 +78,7 @@
 					  <div class="form-group">
 					    <label class="col-md-2 control-label">播放代码</label>
 					    <div class="col-md-10">
-					      <input type="text" name="playUrl" value="${starItem.playUrl }" class="form-control" placeholder="优酷/土豆等提供的播放代码">
+					    	<textarea name="playUrl"  placeholder="播放代码" style="width: 100%;"  rows="2">${starItem.playUrl }</textarea>
 					    </div>
 					  </div>
 					  <div class="form-group">

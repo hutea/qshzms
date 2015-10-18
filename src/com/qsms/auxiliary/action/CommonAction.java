@@ -15,22 +15,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qsms.account.ebean.Account;
 import com.qsms.account.ebean.User;
 import com.qsms.account.service.UserService;
+import com.qsms.core.action.StarFrontAction;
 import com.qsms.util.Helper;
 import com.qsms.util.WebUtil;
 
-@RequestMapping(value = "/common")
 @Controller
 public class CommonAction {
 	@Resource
 	private UserService userService;
+	@Resource
+	private StarFrontAction starFrontAction;
 
 	@Autowired
 	private HttpServletRequest request;
+
+	@RequestMapping("/index")
+	public ModelAndView list() {
+		return starFrontAction.index();
+	}
 
 	/**
 	 * CKEditor传图专用
@@ -38,7 +46,7 @@ public class CommonAction {
 	 * @param himage
 	 * @return
 	 */
-	@RequestMapping(value = "/ckeditor/himage", method = RequestMethod.POST)
+	@RequestMapping(value = "/common/ckeditor/himage", method = RequestMethod.POST)
 	public @ResponseBody
 	String uploadFromCkeditor(
 			@RequestParam(value = "himage", required = false) MultipartFile himage) {

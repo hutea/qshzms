@@ -176,6 +176,9 @@ public class Helper {
 	 * @return
 	 */
 	public static List<String> imagelist(String content) {
+		if (content == null || "".equals(content)) {
+			return new ArrayList<String>();
+		}
 		List<String> list = new ArrayList<String>();
 		String[] imgs = content.replaceAll("\"", "").replaceAll("'", "")
 				.split("<img(\\s)+");

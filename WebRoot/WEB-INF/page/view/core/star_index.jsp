@@ -75,10 +75,9 @@
 		<div class="container">
 			<div class="one-fourth">
 				<p>
-					Nulla facilisi. Aenean nec eros. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere. 
-					Suspendisse sollicitudin velit sed leo. 
+					明星资源站，最新精华资源更新
 				</p>
-				<p>Ut pharetra augue nec augue. Nam elit agna, endrerit sit amet.</p>
+				<p>感谢您访问明星资源站</p>
 				<a href="#" class="button-style-1 small">View All</a>
 			</div><!--/ .one-fourth-->
 
@@ -121,27 +120,27 @@
 						<div class="one-fourth">
 							<h3><span class="dropcapspot">${s.index+1}</span>${star.name} <br /> ${star.pv}pv</h3>
 							<p>${star.note}</p>
-							<a href="/star/view/${star.code }" class="button-style-1 small">Read More</a>
+							<a href="/star/view/${star.code }" class="button-style-1 small">View</a>
 						</div><!--/ .one-fourth-->
 					</c:forEach>
 				</div><!--/ #tab1-->
 
 				<div class="tab-content" id="tab2">
-					<c:forEach items="${omStarList }" var="star">
+					<c:forEach items="${omStarList }" var="star" varStatus="s">
 						<div class="one-fourth">
 							<h3><span class="dropcapspot">${s.index+1}</span>${star.name} <br /> ${star.pv}pv</h3>
 							<p>${star.note}</p>
-							<a href="/star/view/${star.code }" class="button-style-1 small">Read More</a>
+							<a href="/star/view/${star.code }" class="button-style-1 small">View</a>
 						</div><!--/ .one-fourth-->
 					</c:forEach>
 				</div><!--/ #tab2-->
 
 				<div class="tab-content" id="tab3">
-					<c:forEach items="${rhStarList }" var="star">
+					<c:forEach items="${rhStarList }" var="star" varStatus="s">
 						<div class="one-fourth">
 							<h3><span class="dropcapspot">${s.index+1}</span>${star.name} <br /> ${star.pv}pv</h3>
 							<p>${star.note}</p>
-							<a href="/star/view/${star.code }" class="button-style-1 small">Read More</a>
+							<a href="/star/view/${star.code }" class="button-style-1 small">View</a>
 						</div><!--/ .one-fourth-->
 					</c:forEach>
 				</div><!--/ #tab3-->
