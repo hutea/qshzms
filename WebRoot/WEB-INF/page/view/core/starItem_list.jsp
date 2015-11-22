@@ -23,7 +23,7 @@
 	
 	<!-- HTML5 Video Player -->
 	<script src="${pageContext.request.contextPath}/resource/star/index/js/video.js"></script>
-	<script>_V_.options.flash.swf = '${pageContext.request.contextPath}/resource/star/index/js/video-js.swf';</script>
+	<%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>  
 </head>
 <body class="liquid light">
 <div id="wrapper">
@@ -174,24 +174,7 @@
 <script src="${pageContext.request.contextPath}/resource/star/index/js/custom.js"></script>
 <script src="${pageContext.request.contextPath}/resource/star/index/themeChanger/js/colorpicker.js"></script>
 <script src="${pageContext.request.contextPath}/resource/star/index/themeChanger/js/themeChanger.js"></script>
-<script type="text/javascript">
-	function downloadClick(siid){
-		$.post("/star/item/download/click", {
-			siid : siid
-		}, function(data) {
-				$("#download-content-"+siid).css("display","block");
-				$("#download-content-"+siid).html(data);
-		});
-	}
-	
-	function playClick(siid){
-		$.post("/star/item/paly/click", {
-			siid : siid
-		}, function(data) {
-			$("#play-content-"+siid).css("display","block");
-			$("#play-content-"+siid).html(data);
-		});
-	}
-</script>
+<script src="${pageContext.request.contextPath}/resource/js/hz.sus.core.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/hz.common.js"></script> 
 </body>
 </html>

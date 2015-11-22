@@ -66,11 +66,11 @@
 								</c:if>
 								<c:if test="${(pageView.currentPage-1)>=1}">
 									<li>
-										<a href='${pageContext.request.contextPath}/my/share?page${pageView.currentPage+1}'>Prev</a>
+										<a href='${pageContext.request.contextPath}/my/star/item?page${pageView.currentPage+1}'>Prev</a>
 									</li>
 								</c:if>
 								<li>
-									<a href='${pageContext.request.contextPath}/my/share?page=1' class="re" ${pageView.currentPage==1?'style="background-color: #efefef;"':''} >1</a>
+									<a href='${pageContext.request.contextPath}/my/star/item?page=1' class="re" ${pageView.currentPage==1?'style="background-color: #efefef;"':''} >1</a>
 								</li>
 								<c:if test="${pageView.pageIndex.startindex>2}">
 									<li>
@@ -80,7 +80,7 @@
 								<c:forEach begin="${pageView.pageIndex.startindex}"
 									end="${pageView.pageIndex.endindex}" var="per">
 									<li>
-										<a href='${pageContext.request.contextPath}/my/share?page=${per}' ${pageView.currentPage==per?'style="background-color: #efefef;"':''}>${per}</a>
+										<a href='${pageContext.request.contextPath}/my/star/item?page=${per}' ${pageView.currentPage==per?'style="background-color: #efefef;"':''}>${per}</a>
 									</li>
 								</c:forEach>
 						
@@ -92,7 +92,7 @@
 						
 								<c:if test="${pageView.totalPage>=2}">
 									<li>
-										<a href='${pageContext.request.contextPath}/my/share?page=${pageView.totalPage}' 	${pageView.currentPage==pageView.totalPage?'style="background-color: #efefef;"':''} >${pageView.totalPage}</a>
+										<a href='${pageContext.request.contextPath}/my/star/item?page=${pageView.totalPage}' 	${pageView.currentPage==pageView.totalPage?'style="background-color: #efefef;"':''} >${pageView.totalPage}</a>
 									</li>
 								</c:if>
 						
@@ -103,7 +103,7 @@
 								</c:if>
 								<c:if test="${(pageView.currentPage+1)<=pageView.totalPage}">
 									<li>
-										<a href='${pageContext.request.contextPath}/my/share?page=${pageView.currentPage+1}'>Next</a>
+										<a href='${pageContext.request.contextPath}/my/star/item?page=${pageView.currentPage+1}'>Next</a>
 									</li>
 								</c:if>
 							</ul>

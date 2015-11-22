@@ -34,7 +34,7 @@
 						<fieldset>
 							<label for="s-email">You And Me Use</label>
 							<input type="text" placeholder="Enter your message" name="smsg" id="s-email"/>
-							<input type="button" name="signup_submit" id="signup_submit" value="Submit" />
+							<input type="button" name="signup_submit" onclick="editMyStar()" id="signup_submit" value="Submit" />
 						</fieldset>
 					</form><!--/ #signup_form-->
 				</div><!--/ #signup -->

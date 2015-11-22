@@ -31,8 +31,7 @@
         //  2. Recent Post count
         var recent_post_count = 3;
     </script>
-    <%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>   
-    
+    <%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>  
 </head>
 <body class="home-template">
 
@@ -81,17 +80,6 @@
                         <div class="pull-right share">
                         </div>
                     </footer>
-                    
-                    <!--高速版-->
-					<div id="SOHUCS" sid="${blog.id}"></div>
-					<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
-					<script type="text/javascript">
-					    window.changyan.api.config({
-					        appid: 'cyrYRsxhH',
-					        conf: 'prod_fe34c82a093404d36eaa4592faaad6e3'
-					    });
-					</script>
-					  
                 </article>
 
                 <nav class="prev-next-wrap clearfix" >
@@ -102,7 +90,16 @@
                    		<a class="btn btn-default" href="/blog/view/${nextBlog.id}">${nextBlog.title}<i class="fa fa-angle-right fa-fw"></i></a>
                     </c:if>
                 </nav>
-
+                
+				<!--高速版-->
+				<div id="SOHUCS" sid="${blog.id}"></div>
+				<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+				<script type="text/javascript">
+				    window.changyan.api.config({
+				        appid: 'cyrYRsxhH',
+				        conf: 'prod_fe34c82a093404d36eaa4592faaad6e3'
+				    });
+				</script>
 
             </main>
 			<%@ include file="/WEB-INF/page/view/blog/blog-common-aside.jsp" %>
@@ -116,6 +113,6 @@
 <script src="${pageContext.request.contextPath}/resource/chain/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/hz.sus.blog.js"></script> 
-
+<script src="${pageContext.request.contextPath}/resource/js/hz.common.js"></script> 
 </body>
 </html>

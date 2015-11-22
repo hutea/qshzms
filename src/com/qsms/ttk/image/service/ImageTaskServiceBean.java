@@ -62,6 +62,7 @@ public class ImageTaskServiceBean extends DAOSupport<ImageTask> implements
 			this.save(imageTask);
 		} else {// 更新为false
 			imageTask.setVisible(false);
+			imageTask.setRetry(0);
 			this.update(imageTask);
 		}
 	}

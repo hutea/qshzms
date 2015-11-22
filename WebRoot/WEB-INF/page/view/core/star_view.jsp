@@ -21,7 +21,8 @@
         <script src="${pageContext.request.contextPath}/resource/star/view/js/vendor/modernizr-2.6.2.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resource/photoswipe/photoswipe.min.js"></script> 
 		<script src="${pageContext.request.contextPath}/resource/photoswipe/photoswipe-ui-default.min.js"></script> 
-		    <style type="text/css">
+		<%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>  
+		<style type="text/css">
         .my-gallery {
             width: 100%;
             float: left;
@@ -55,6 +56,7 @@
             width: 500px;
         }
     </style>
+    
     </head>
     <body onload="loadImage(1)">
         <!--[if lt IE 7]>
@@ -230,6 +232,7 @@
         <script src="${pageContext.request.contextPath}/resource/star/view/js/plugins.js"></script>
         <script src="${pageContext.request.contextPath}/resource/star/view/js/main.js"></script>
         <script src="${pageContext.request.contextPath}/resource/photoswipe/myfun.js"></script>
+		<script src="${pageContext.request.contextPath}/resource/js/hz.common.js"></script> 
 		<!-- templatemo 439 rectangle -->
 		<script type="text/javascript">
 			function downloadClick(siid){

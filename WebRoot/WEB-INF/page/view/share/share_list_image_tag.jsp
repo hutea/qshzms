@@ -21,7 +21,6 @@
     <style type="text/css">
    		.item { width: 300px;}
     </style>
-    <%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>
         
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,6 +28,7 @@
     <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>  
 </head> 
 <body>
 <div class="wrapall">
@@ -113,7 +113,7 @@
  
 <script src="${pageContext.request.contextPath}/resource/js/hz.sus.common.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resource/js/hz.sus.ajaxupload.js" type="text/javascript"></script>
-
+<script src="${pageContext.request.contextPath}/resource/js/hz.common.js"></script> 
 <script type="text/javascript">
 var $container = $('#hz-mason').masonry();
 $container.imagesLoaded( function() {

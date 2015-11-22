@@ -32,8 +32,7 @@
         //  2. Recent Post count
         var recent_post_count = 3;
     </script>
-    <%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>   
-    
+    <%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>  
 </head>
 <body class="home-template">
 
@@ -117,6 +116,7 @@
 <script src="${pageContext.request.contextPath}/resource/chain/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resource/js/hz.sus.blog.js"></script> 
+<script src="${pageContext.request.contextPath}/resource/js/hz.common.js"></script> 
 
 </body>
 </html>

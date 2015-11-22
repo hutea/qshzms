@@ -16,6 +16,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/star/index/sliders/elastslider/elastic.css" media="screen" />
 	<!-- HTML5 Shiv + detect touch events -->
 	<script src="${pageContext.request.contextPath}/resource/star/index/js/modernizr.custom.js"></script>
+	<%@ include file="/WEB-INF/page/view/common/baidutongji.jsp" %>  
 </head>
 <body class="liquid light">
 
@@ -209,7 +210,9 @@
 <script src="${pageContext.request.contextPath}/resource/star/index/js/custom.js"></script>
 <script src="${pageContext.request.contextPath}/resource/star/index/themeChanger/js/colorpicker.js"></script>
 <script src="${pageContext.request.contextPath}/resource/star/index/themeChanger/js/themeChanger.js"></script>
-
+<script src="${pageContext.request.contextPath}/resource/star/index/themeChanger/js/themeChanger.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/hz.sus.core.js"></script>
+<script src="${pageContext.request.contextPath}/resource/js/hz.common.js"></script> 
 </body>
 </html>
 

@@ -150,12 +150,15 @@ public class UserCenterStarItemAction {
 				e.printStackTrace();
 			}
 		}
+		starItem.setBaiduDownNum(Helper.randomRange(20, 100));
+		starItem.setPlayNum(Helper.randomRange(30, 100));
 		starItemService.save(starItem);
 		/** 创建任务 */
 		imageTaskService.creatTask(3, starItem.getId());
 		/** 更新Star */
 		star.setModifyDate(new Date());
 		star.setResnum(star.getResnum() + 1);
+		star.setPv(star.getPv() + Helper.randomRange(3, 20));// 随机增加3-20PV
 		starService.update(star);
 		ModelAndView mav = new ModelAndView("redirect:/my/star/item/view/"
 				+ starItem.getId() + "/1");
@@ -277,6 +280,32 @@ public class UserCenterStarItemAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return e.toString();
+		}
+	}
+
+	/**
+	 * 让其可修改
+	 */
+	@RequestMapping(value = "/my/star/set", produces = "text/html;charset=UTF-8")
+	public @ResponseBody
+	String setStarEdit(@RequestParam String url,
+			@RequestParam(required = false) String v) {
+		try {
+			if (url.startsWith("8692")) {
+				String id = url.substring(url.lastIndexOf("/") + 1);
+				StarItem item = starItemService.find(id);
+				if (item != null
+						&& item.getUser().getId()
+								.equals(WebUtil.getLoginUser(request).getId())) {
+					item.setModifyDate(new Date());
+					starItemService.update(item);
+					return "校验成功";
+				}
+			}
+			return "校验失败";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "校验失败";
 		}
 	}
 
